@@ -1,4 +1,15 @@
 <?php include 'includes/navbar.php'; ?>
+<?php 
+$conn = mysqli_connect('localhost','root','ngg12#1','GlassGuruDB');
+
+if(!$conn){
+    die('Database connection failed: ' .mysqli_connect_error());
+}
+
+$sql = 'select * from products';
+$result = mysqli_query($conn,$sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +39,7 @@
             <section class="products-list">
 
                 <!-- Product Card Example (Add dynamic product cards here) -->
-                <div class="product-card">
+                <!-- <div class="product-card">
                     <img src="assets/images/black-logo.png" alt="Product 1">
                     <h3>Product Title 1</h3>
                     <p>Price: $XX.XX</p>
@@ -46,10 +57,28 @@
                     <img src="path/to/image3.jpg" alt="Product 3">
                     <h3>Product Title 3</h3>
                     <p>Price: $XX.XX</p>
-                    <p>Short description of Product 3.</p>
-                </div>
+                    <p>Short description of Product 3.</p> 
+                 </div> -->
                 
                 <!-- Add more product cards dynamically as needed -->
+
+                <?php 
+                    if($result && mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "
+                               <div class='product-card'>
+                    <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image'>
+                    <h3>{$row['title']}</h3>
+                    <p>Price: Rs. {$row['price']}</p>
+                    <p>{$row['description']}</p> 
+                 </div> 
+                ";
+                        }
+                    } else {
+                        echo "<p>No products available.</p>";
+                    }
+                ?>
+              
             </section>
         </div>
 

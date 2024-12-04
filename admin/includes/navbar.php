@@ -13,14 +13,14 @@
         </div>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="manage-products.php">Manage Products</a></li>
-            <li><a href="manage-users.php">Manage Users</a></li>
-            <li><a href="manage-calculator.php">Manage Calculator</a></li>
+            <li><a href="dashboard.php"  class="nav-link" data-target = "dashboard.php" >Dashboard</a></li>
+            <li><a href="manage-products.php"  class="nav-link" data-target ="manage-products.php" >Manage Products</a></li>
+            <li><a href="manage-users.php"  class="nav-link" data-target = "manage-users.php" >Manage Users</a></li>
+            <li><a href="manage-calculator.php"  class="nav-link" data-target ="manage-calculator.php">Manage Calculator</a></li>
         </ul>
 
         <div class="auth-links">
-            <a href="log-out.php">Log-out</a>
+            <a href="/Project-I/business/index.php">Log-out</a>
         </div>
     </div>
 </nav>
@@ -30,4 +30,4 @@
         navLinks.classList.toggle('show');
     }
 </script>
-<!-- <script src="assets/js/admin-script.js"></script> -->
+<script src="assets/js/admin-script.js"></script>

@@ -65,7 +65,7 @@ body {
     background-color: #ddd;
 }
 
-.popup {
+/* .popup {
     display: none;
     position: fixed;
     left: 0;
@@ -93,7 +93,36 @@ body {
     cursor: pointer;
     font-size: 20px;
     color: #888;
-}
+} */
+
+
+    .popup {
+        display: none;
+        width: 25%;
+        /* Ensure it's hidden initially */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border-radius: 10px;
+    }
+
+    .popup-content {
+        text-align: center;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        cursor: pointer;
+    }
+
 
 .close:hover {
     color: #000;

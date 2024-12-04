@@ -1,10 +1,29 @@
 
 <?php
 
-// Dummy data (replace with actual database queries in a real setup)
-$totalProducts = 100; // Replace with query to count products
-$totalUsers = 50;     // Replace with query to count users
-$totalCalculatorUses = 30; // Replace with query to track calculator usage
+$conn = mysqli_connect('localhost','root','ngg12#1','GlassGuruDB');
+
+if(!$conn){
+    die('Database connection failed: ' .mysqli_connect_error());
+}
+
+    //1.fetchs total products
+    $productQuery = 'select count(*) as total_products from products';
+    $productResult = mysqli_query($conn,$productQuery);
+    $productData = mysqli_fetch_assoc($productResult);
+    $totalProducts = $productData['total_products'];
+    //2.fetch total users
+    $userQuery = 'select count(*) as total_users from users';
+    $userResult = mysqli_query($conn,$userQuery);
+    $userData = mysqli_fetch_assoc($userResult);
+    $totalUsers = $userData['total_users'];
+
+
+
+// // Dummy data (replace with actual database queries in a real setup)
+// $totalProducts = 100; // Replace with query to count products
+// // $totalUsers = 50;     // Replace with query to count users
+// $totalCalculatorUses = 30; // Replace with query to track calculator usage
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +42,7 @@ $totalCalculatorUses = 30; // Replace with query to track calculator usage
 
     <div class="admin-layout">
 
-        <div class="admin-content">
+        <div id="" class="admin-content">
             <h2>Welcome to the Admin Dashboard</h2>
             
             <!-- Overview Section -->
@@ -33,12 +52,8 @@ $totalCalculatorUses = 30; // Replace with query to track calculator usage
                     <p><?php echo $totalProducts; ?></p>
                 </div>
                 <div class="overview-card">
-                    <h4>Total Users</h>
+                    <h4>Total Users</h4>
                     <p><?php echo $totalUsers; ?></p>
-                </div>
-                <div class="overview-card">
-                    <h4>Calculator Usage</h4>
-                    <p><?php echo $totalCalculatorUses; ?></p>
                 </div>
             </div>
         </div>
