@@ -1,4 +1,9 @@
 <!-- includes/navbar.php -->
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <nav class="navbar">
     <div class="container">
         <div class="logo">
@@ -20,9 +25,75 @@
             <li><a href="calculate.php">Calculate</a></li>
         </ul>
 
-        <div class="auth-links">
-            <a href="login.php">Login</a>
-            <a href="signup.php">Sign Up</a>
-        </div>
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
+            <div class="user-info">
+                <div class="icon-section">
+                    <img src="assets/images/user-icon1.png" alt="User Icon" class="user-icon">
+                    <form action="logout.php" method="post" style="display: inline;" class="logout-form">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+                <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+            </div>
+
+        <?php else: ?>
+            <div class="auth-links">
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </div>
+        <?php endif; ?>
     </div>
 </nav>
+
+<style>
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .icon-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        /* Space between user icon and logout button */
+    }
+
+    .user-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .username {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        margin-left: -70px;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+
+    .logout-form {
+        margin: 0;
+    }
+
+    .logout-btn {
+        border: none;
+        background-color: #f00;
+        color: #fff;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        background-color: #c00;
+    }
+</style>

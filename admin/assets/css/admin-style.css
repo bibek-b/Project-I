@@ -65,6 +65,15 @@
 }
 
 
+.btn-accept {
+    background-color: #4caf10;
+    color: white;
+}
+
+.btn-decline {
+    background-color: #e44336;
+    color: white;
+}
 
 
 /* dashboard style********************************************************************************************************** */

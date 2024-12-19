@@ -24,12 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //check if user is found
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($userId, $userName);
+        $stmt->bind_result($user_id, $username);
         $stmt->fetch();
 
         //set session variables for the logged-in user
-        $_SESSION['userId'] = $userId;
-        $_SESSION['userName'] = $userName;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = $username;
 
         //redirect to the home page
         header('Location: index.php');

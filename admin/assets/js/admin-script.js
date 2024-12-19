@@ -5,132 +5,6 @@ function toggleMenu() {
 
 // manage-products/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Initialize an empty array to hold products
-//     const products = [];
-//     let editIndex = -1; // To track the product being edited
-
-//     // Load products when the page is ready
-//     loadProducts();
-
-//     // Function to load products (initial mock data)
-//     function loadProducts() {
-//         // You can fetch products from an API or database here
-//         const mockProducts = [
-//             // { sn: 1, image: 'uploads/product1.jpg', title: 'Product 1', price: '100', description: 'Description for Product 1' },
-//             // { sn: 2, image: 'uploads/product2.jpg', title: 'Product 2', price: '150', description: 'Description for Product 2' }
-//         ];
-//         products.push(...mockProducts);
-//         renderTable();
-//     }
-
-//     // Function to handle form submission
-//     function handleSubmit(event) {
-//         event.preventDefault(); // Prevent default form submission
-//         const title = document.getElementById('title').value;
-//         const imageFile = document.getElementById('image').files[0];
-//         const price = document.getElementById('price').value;
-//         const description = document.getElementById('description').value; // Get description
-
-//         if (editIndex === -1) {
-//             // Add new product
-//             const newProduct = {
-//                 sn: products.length + 1,
-//                 image: URL.createObjectURL(imageFile), // Use Object URL for preview
-//                 title: title,
-//                 price: price,
-//                 description: description // Include description
-//             };
-//             products.push(newProduct);
-//         } else {
-//             // Edit existing product
-//             products[editIndex].title = title;
-//             products[editIndex].price = price;
-//             products[editIndex].description = description; // Update description
-//             // Update image if a new one is selected
-//             if (imageFile) {
-//                 products[editIndex].image = URL.createObjectURL(imageFile);
-//             }
-//         }
-//         renderTable();
-//         closePopup();
-//     }
-
-//     // Function to render the product table
-//     function renderTable() {
-//         const tableBody = document.getElementById('productTableBody');
-//         tableBody.innerHTML = ''; // Clear existing rows
-
-//         products.forEach((product, index) => {
-//             const row = document.createElement('tr');
-//             row.innerHTML = `
-//                 <td>${product.sn}</td>
-//                 <td><img src="${product.image}" alt="${product.title}" style="width: 50px; height: auto;"></td>
-//                 <td>${product.title}</td>
-//                 <td>$${product.price}</td>
-//                 <td>
-//                     <button onclick="editProduct(${index})">Edit</button>
-//                     <button onclick="deleteProduct(${index})">Delete</button>
-//                 </td>
-//             `;
-//             tableBody.appendChild(row);
-//         });
-//     }
-
-//     // Function to edit a product
-//     function editProduct(index) {
-//         const product = products[index];
-//         document.getElementById('popupTitle').innerText = 'Edit Product';
-//         document.getElementById('title').value = product.title;
-//         document.getElementById('price').value = product.price;
-//         document.getElementById('description').value = product.description; // Set description
-//         document.getElementById('imagePreview').src = product.image;
-//         document.getElementById('imagePreview').style.display = 'block'; // Show image preview
-//         editIndex = index; // Set index for editing
-//         document.getElementById('productPopup').style.display = 'block'; // Show popup
-//     }
-
-//     // Function to delete a product
-//     function deleteProduct(index) {
-//         products.splice(index, 1); // Remove product from array
-//         renderTable(); // Refresh the table
-//     }
-
-//     // Function to open the add product popup
-//     function openPopup() {
-//         document.getElementById('popupTitle').innerText = 'Add New Product';
-//         document.getElementById('addProductForm').reset(); // Reset the form
-//         document.getElementById('imagePreview').style.display = 'none'; // Hide image preview
-//         editIndex = -1; // Reset edit index
-//         document.getElementById('productPopup').style.display = 'block'; // Show popup
-//     }
-
-//     // Function to close the popup
-//     function closePopup() {
-//         document.getElementById('productPopup').style.display = 'none'; // Hide popup
-//     }
-
-//     // Preview image function
-//     function previewImage(event) {
-//         const file = event.target.files[0];
-//         if (file) {
-//             const reader = new FileReader();
-//             reader.onload = function (e) {
-//                 document.getElementById('imagePreview').src = e.target.result; // Set image source to preview
-//                 document.getElementById('imagePreview').style.display = 'block'; // Show image preview
-//             }
-//             reader.readAsDataURL(file); // Read the image as a data URL
-//         }
-//     }
-
-//     // Make functions available globally
-//     window.openPopup = openPopup;
-//     window.closePopup = closePopup;
-//     window.handleSubmit = handleSubmit;
-//     window.previewImage = previewImage;
-//     window.editProduct = editProduct;
-//     window.deleteProduct = deleteProduct;
-// });
 
     //add products
     function openAddProductPopup() {
@@ -213,7 +87,7 @@ function toggleMenu() {
       }else if(status ==='no-change'){
         alert('No changes were made to the product.');
 
-      }
+      } 
 
       if(status){
         const newUrl = window.location.origin + window.location.pathname;

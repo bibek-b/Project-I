@@ -21,11 +21,3 @@ if(password !== confirmPassword){
 }
 
 }
-
-// function validateLogin(e){
-//     e.preventDefault();
-   
-//     const email 
-//     const lErrmsg = document.getElementById("error-msg");
-
-// }

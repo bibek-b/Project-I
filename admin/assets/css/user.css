@@ -154,6 +154,12 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+
+.btn-decline {
+    background-color: #e44336;
+    color: white;
+}
 @media (max-width: 576px) {
     .user-table {
         display: block; /* Change table to block */

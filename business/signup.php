@@ -35,6 +35,8 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $confirm_Password = $_POST['confirm_Password'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
 
             //check if email is already exists
             $stmt = $connection->prepare('SELECT email from users where email = ?');
@@ -49,9 +51,9 @@
             } else {
                 //insert new user if email doesn't exist
                 $stmt->close();
-                $stmt = $connection->prepare('insert into users(userName,email,password,confirm_Password)
-     values(?,?,?,?)');
-                $stmt->bind_param('ssss', $userName, $email, $password, $confirm_Password);
+                $stmt = $connection->prepare('insert into users(userName,email,password,confirm_Password,phone,address)
+     values(?,?,?,?,?,?)');
+                $stmt->bind_param('ssssss', $userName, $email, $password, $confirm_Password,$phone,$address);
                 $stmt->execute();
                 $signupSucess = true;
             }
@@ -92,6 +94,14 @@
                     <div class="form-group">
                         <label for="confirm_Password">Confirm Password:</label>
                         <input type="password" id="confirm_password" name="confirm_Password" required placeholder="Confirm Your Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" required placeholder="Enter Your Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone No:</label>
+                        <input type="int" maxlength="10" id="phone" name="phone" required placeholder="+977-XXXXXXXXXX">
                     </div>
                     <p id='error-msg'></p>
                     <button type="submit">Sign Up</button>
