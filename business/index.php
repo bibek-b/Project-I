@@ -14,7 +14,13 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to Our Business</h1>
-            <p>Your one-stop solution for [brief description of what your business does] Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam maxime aliquam iste! Eius at totam repudiandae voluptate nisi, numquam cupiditate a error quidem, corporis officia doloribus, eaque officiis laborum fugit?</p>
+            <p>Welcome to Nepal Glass Guru – Your Trusted Partner for Premium Glass Solutions!
+
+            At Nepal Glass Guru, we specialize in providing top-quality glass products and services tailored to your unique needs. Whether you're looking for custom-cut glass, stylish mirrors, or expert installations, we've got you covered.<br>
+
+            Your vision, our expertise. Together, let's create something extraordinary!
+
+            Visit us today and discover why we are Nepal's go-to glass experts.</p>
             <button onclick="window.location.href='services.php'">Explore Our Services</button>
         </div>
     </section>
@@ -25,24 +31,28 @@
         <h2>Our Services</h2>
         <div class="service-container">
             <div class="service-item">
-                <img src="assets/images/black-logo.png" alt="Service 1 Image">
-                <h3>Service 1</h3>
-                <p>Short description of Service 1.</p>
+                <img src="assets/images/cut.png" alt="Service 1">
+                <h3> Glass Cutting and Customization</h3>
+                <p>Custom-sized glass cutting for windows, doors, tables, and shelves.
+                    Options for specific thickness, shapes (rectangular, circular, etc.), and edge finishes (beveled, polished, etc.).Glass drilling for hardware fittings (e.g., hinges, knobs).
+                </p>
             </div>
             <div class="service-item">
-                <img src="assets/images/service2.jpg" alt="Service 2 Image">
-                <h3>Service 2</h3>
-                <p>Short description of Service 2.</p>
+                <img src="assets/images/custom.png" alt="Service 2">
+                <h3>Decorative Glass Services</h3>
+                <p>Custom designs for decorative purposes, such as etched, frosted, or stained glass.
+                    Glass panels for cabinets, display cases, or wall art.</p>
             </div>
             <div class="service-item">
-                <img src="assets/images/service3.jpg" alt="Service 3 Image">
-                <h3>Service 3</h3>
-                <p>Short description of Service 3.</p>
+                <img src="assets/images/deliver.png" alt="Service 3">
+                <h3>Delivery Services</h3>
+                <p>Safe transportation of glass products to the customer’s location.</p>
             </div>
             <div class="service-item">
-                <img src="assets/images/service4.jpg" alt="Service 4 Image">
-                <h3>Service 4</h3>
-                <p>Short description of Service 4.</p>
+                <img src="assets/images/installation.png" alt="Service 4">
+                <h3>Glass Repair and Replacement</h3>
+                <p>Repair of broken or damaged glass panels for windows, doors, or furniture.
+                Replacement services for cracked or old glass with new and durable options..</p>
             </div>
         </div>
     </section>
@@ -53,10 +63,10 @@
     <section class="featured-product">
         <h2>Featured Product</h2>
         <div class="product-content">
-            <img src="assets/images/featured-product.jpg" alt="Featured Product">
+            <img src="assets/images/rectangle-mirror.jpg" alt="Rectangle Mirror">
             <div class="product-details">
-                <h3>Product Name</h3>
-                <p>Short description of the featured product, highlighting its main benefits and features in a few sentences. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, blanditiis? Dolor voluptate nostrum nihil similique dolorem, sapiente asperiores incidunt sequi itaque, nulla quasi minima eius est deserunt illo dignissimos. Minima?</p>
+                <h3>Led Rectangle Mirror(2ft * 5ft)</h3>
+                <p>This is a premium 2feet wide and 4feet tall rectangular mirror. This mirror is frameless mirror with LED lights installed into it, which makes it attractive and makes your mirror experience even more nice with proper lighting.</p>
                 <button onclick="window.location.href='product-details.php'">Learn More</button>
             </div>
         </div>
@@ -64,11 +74,11 @@
         <div class="product-content">
             
             <div class="product-details">
-                <h3>Product Name</h3>
-                <p>Short description of the featured product, highlighting its main benefits and features in a few sentences.</p>
+                <h3>Glass Book Shelf</h3>
+                <p>This is a glass book shelf which is 6feet tall and 4feet wide. This give your home a premium look and feel. This book shelf is strong and durable. You do not need to worry about the safety as it is made from lamninated glass and the edges are polished(which avoids cuts and ensures smooth edge).</p>
                 <button onclick="window.location.href='product-details.php'">Learn More</button>
             </div>
-            <img src="assets/images/black-logo.png" alt="Featured Product">
+            <img src="assets/images/book-shelf.jpg" alt="Book Shelf">
         </div>
     </section>
 
@@ -78,7 +88,7 @@
     <!-- About Section -->
     <section class="about">
         <h2>About Us</h2>
-        <p>We are a local business specializing in glass products. Our mission is to provide customers with trusthworthy, high quality glass materials for their homes, office, etc . With a commitment to excellence and customer satisfaction, we strive to deliver the best products and services. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate harum, consequuntur saepe perferendis explicabo nemo. In aperiam aspernatur autem voluptatem! .</p>
+        <p>We are a local business specializing in glass products. Our mission is to provide customers with trusthworthy, high quality glass materials for their homes, office, etc . With a commitment to excellence and customer satisfaction, we strive to deliver the best products and services.  Our mission is to revolutionize the way glass products are purchased and customized, offering both value and convenience to our customers..</p>
     </section>
 
 
@@ -89,14 +99,14 @@
         <h2>Our Development Team</h2>
         <div class="member-container">
             <div class="member-item">
-                <img src="assets/images/black-logo.png" alt="Member 1">
-                <h3>Member 1</h3>
-                <p>Short description about Member 1's role and contributions.</p>
+                <img src="assets/images/ceetoo.png" alt="Member 1">
+                <h3>Chandan Chaudhary</h3>
+                <p>Co-founder of Nepal Glass Guru. Front end developer of the project. </p>
             </div>
             <div class="member-item">
                 <img src="assets/images/member2.jpg" alt="Member 2">
-                <h3>Member 2</h3>
-                <p>Short description about Member 2's role and contributions.</p>
+                <h3>Bibek BK</h3>
+                <p>Co-Founder of Nepal Glass Guru. Back end developer of the project.</p>
             </div>
         </div>
     </section>

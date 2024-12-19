@@ -2,7 +2,7 @@
 //start session
 session_start();
 
-$connection = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$connection) {
     die('Connection failed: ' . mysqli_connect_error());

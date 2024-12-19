@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 $isLoggedIn = isset($_SESSION['user_id']); // Checks if the user is logged in
 $user_id = $isLoggedIn ?$_SESSION['user_id'] : null;
 
-$connection = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$connection) {
     die('Connection failed: ' . mysqli_connect_error());

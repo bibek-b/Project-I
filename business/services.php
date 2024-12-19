@@ -15,24 +15,28 @@
         <section class="services-section">
             
             <div class="service">
-                <img src="assets/images/black-logo.png" alt="Service 1">
-                <h3>Service 1</h3>
-                <p>Short description of Service 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquam nobis tempore fugit dolorem provident tempora soluta autem voluptatibus saepe? Deleniti laborum molestiae sit laboriosam cupiditate, nostrum labore modi doloribus. </p>
+                <img src="assets/images/cut.png" alt="Service 1">
+                <h3> Glass Cutting and Customization</h3>
+                <p>Custom-sized glass cutting for windows, doors, tables, and shelves.
+                    Options for specific thickness, shapes (rectangular, circular, etc.), and edge finishes (beveled, polished, etc.).Glass drilling for hardware fittings (e.g., hinges, knobs).
+                </p>
             </div>
             <div class="service">
-                <img src="assets/images/service2.jpg" alt="Service 2">
-                <h3>Service 2</h3>
-                <p>Short description of Service 2.</p>
+                <img src="assets/images/custom.png" alt="Service 2">
+                <h3>Decorative Glass Services</h3>
+                <p>Custom designs for decorative purposes, such as etched, frosted, or stained glass.
+                    Glass panels for cabinets, display cases, or wall art.</p>
             </div>
             <div class="service">
-                <img src="assets/images/service3.jpg" alt="Service 3">
-                <h3>Service 3</h3>
-                <p>Short description of Service 3.</p>
+                <img src="assets/images/deliver.png" alt="Service 3">
+                <h3>Delivery Services</h3>
+                <p>Safe transportation of glass products to the customer’s location.</p>
             </div>
             <div class="service">
-                <img src="assets/images/service4.jpg" alt="Service 4">
-                <h3>Service 4</h3>
-                <p>Short description of Service 4.</p>
+                <img src="assets/images/installation.png" alt="Service 4">
+                <h3>Glass Repair and Replacement</h3>
+                <p>Repair of broken or damaged glass panels for windows, doors, or furniture.
+                Replacement services for cracked or old glass with new and durable options..</p>
             </div>
         </section>
 
