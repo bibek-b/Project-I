@@ -25,7 +25,8 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="calculate.php">Calculate</a></li>
         </ul>
 
-        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
+        <div id="auth">
+            <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
             <div class="user-info">
                 <div class="icon-section">
                     <img src="assets/images/user-icon1.png" alt="User Icon" class="user-icon">
@@ -42,6 +43,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="signup.php">Sign Up</a>
             </div>
         <?php endif; ?>
+        </div>
     </div>
 </nav>
 

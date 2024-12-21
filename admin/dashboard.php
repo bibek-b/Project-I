@@ -1,7 +1,7 @@
 
 <?php
 
-$conn = mysqli_connect('localhost','root','ngg12#1','GlassGuruDB');
+$conn = mysqli_connect('localhost','root','','GlassGuruDB');
 
 if(!$conn){
     die('Database connection failed: ' .mysqli_connect_error());

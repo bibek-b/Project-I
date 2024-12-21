@@ -1,6 +1,6 @@
 <!-- manage-products.php -->
 <?php
-$conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['add_product'])) {
         echo "<script>alert('Failed to upload an image');</script>";
     }
 }
+
+
 
 //handles deleting a product
 if (isset($_GET['delete'])) {

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const placeOrderBtn = document.getElementById("place-order-btn");
   const sectionsContainer = document.getElementById("sections-container");
   const prices = {
-    "5mm": { black: 1100, blue: 115, clear: 120, green: 125 },
+    "5mm": { black: 110, blue: 115, clear: 120, green: 125 },
     "6mm": { black: 140, blue: 145, clear: 150, green: 155 },
     "8mm": { black: 190, blue: 195, clear: 200, green: 205 },
     "10mm": { black: 250, blue: 255, clear: 260, green: 265 },
