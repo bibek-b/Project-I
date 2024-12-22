@@ -37,12 +37,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error_msg = 'Incorrect email or password. Please try again.';
     }
+     } else {
+        // Check if the email exists in the admin table
+        $stmt = $connection->prepare('SELECT id, username, password, role FROM admin WHERE email = ?');
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($admin_id, $admin_username, $admin_password, $admin_role);
+            $stmt->fetch();
+
+            // Verify the password
+            if (password_verify($password, $admin_password)) {
+                // Set session variables for the logged-in admin
+                $_SESSION['admin_id'] = $admin_id;
+                $_SESSION['username'] = $admin_username;
+                $_SESSION['role'] = $admin_role;
+
+                // Redirect to admin dashboard
+                header('Location: /admin/dashboard.php');
+                exit;
+            } else {
+                $error_msg = 'Incorrect email or password. Please try again.';
+            }
+        } else {
+            $error_msg = 'No account found with that email.';
+        }
+    }
+
     $stmt->close();
-}
 
 $connection->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

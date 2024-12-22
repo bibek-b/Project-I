@@ -19,6 +19,11 @@ if(!$conn){
     $totalUsers = $userData['total_users'];
 
 
+    $orderQuery = 'select count(*) as total_orders from orders';
+    $OrderResult = mysqli_query($conn,$orderQuery);
+    $orderData = mysqli_fetch_assoc($OrderResult);
+    $totalOrders = $orderData['total_orders'];
+
 
 // // Dummy data (replace with actual database queries in a real setup)
 // $totalProducts = 100; // Replace with query to count products
@@ -54,6 +59,10 @@ if(!$conn){
                 <div class="overview-card">
                     <h4>Total Users</h4>
                     <p><?php echo $totalUsers; ?></p>
+                </div>
+                <div class="overview-card">
+                    <h4>Total Orders</h4>
+                    <p><?php echo $totalOrders; ?></p>
                 </div>
             </div>
         </div>

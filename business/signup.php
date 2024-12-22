@@ -22,7 +22,6 @@
             die('connection failed' . mysqli_connect_error());
         //initialize variables to check signup status
         
-
         }
         $signupSucess = false;
         $email_error_msg = '';
@@ -52,7 +51,7 @@
                 //insert new user if email doesn't exist
                 $stmt->close();
                 $stmt = $connection->prepare('insert into users(userName,email,password,confirm_Password,phone,address)
-     values(?,?,?,?,?,?)');
+                    values(?,?,?,?,?,?)');
                 $stmt->bind_param('ssssss', $userName, $email, $password, $confirm_Password,$phone,$address);
                 $stmt->execute();
                 $signupSucess = true;
@@ -60,7 +59,7 @@
                 $stmt->close();
             }
              
-            //close the db connection
+        //close the db connection
         $connection->close();
         ?>
 

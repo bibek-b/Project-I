@@ -25,7 +25,7 @@ $result = mysqli_query($conn,$sql);
 
         <div class="products-container">
             <!-- Sidebar for Product Types -->
-            <aside class="product-types">
+            <!-- <aside class="product-types">
                 <h2>Product Types</h2>
                 <ul>
                     <li><a href="#">Type 1</a></li>
@@ -33,7 +33,7 @@ $result = mysqli_query($conn,$sql);
                     <li><a href="#">Type 3</a></li>
                     <li><a href="#">Type 4</a></li>
                 </ul>
-            </aside>
+            </aside> -->
 
             <!-- Main Product List -->
             <section class="products-list">

@@ -17,7 +17,7 @@
             <li><a href="manage-products.php"  class="nav-link" data-target ="manage-products.php" >Manage Products</a></li>
             <li><a href="manage-users.php"  class="nav-link" data-target = "manage-users.php" >Manage Users</a></li>
             <li><a href="manage-calculator.php"  class="nav-link" data-target ="manage-calculator.php">Manage Calculator</a></li>
-            <li><a href="order-page.php"  class="nav-link" data-target ="order-page.php">Order Details</a></li>
+            <li><a href="order-page.php"  class="nav-link" data-target ="order-page.php">Manage Order</a></li>
         </ul>
 
         <div class="auth-links">

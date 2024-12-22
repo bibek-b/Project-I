@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_bind_param($stmt, 'si', $status, $order_id);
 
         if (mysqli_stmt_execute($stmt)) {
-            echo json_encode(['success' => true, 'message' => "Are you sure? You want to change this Order status  to $status."]);
+            echo json_encode(['success' => true, 'message' => "Order status updated to $status."]);
         } else {
             echo json_encode(['success' => false, 'message' => "Failed to update order status."]);
         }
@@ -182,25 +182,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit();
 }
-if (isset($input['order_id'])) {
-    $order_id = intval($input['order_id']);
-    $query = 'SELECT * FROM orders WHERE order_id = ?';
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $order_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $order = mysqli_fetch_assoc($result);
-        echo json_encode(['success' => true, 'data' => $order]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Order not found.']);
-    }
-    // exit();
-}
 
 
-//show detais
+
+
+
+
 ?>
 
 <html lang="en">
