@@ -7,10 +7,11 @@ if(!$conn){
 }
 
 // Get the product ID from the URL
-$product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
+$user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
 
 // Fetch the product details from the database
-$sql = "SELECT * FROM products WHERE id = $product_id";
+$sql = "SELECT * FROM products WHERE product_id = $product_id";
 $result = mysqli_query($conn, $sql);
 
 $product = null;
@@ -20,6 +21,7 @@ if($result && mysqli_num_rows($result) > 0){
     die('Product not found!');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,10 +40,17 @@ if($result && mysqli_num_rows($result) > 0){
             </div>
             <div class="product-info">
                 <h1><?php echo $product['title']; ?></h1>
-                <p><strong>Price:</strong> Rs. <?php echo $product['price']; ?></p>
-                <p><strong>Description:</strong> <?php echo $product['description']; ?></p>
+                <p style='color: orangered;'><strong>Price:</strong> Rs. <?php echo $product['price']; ?></p>
+                <p><?php echo $product['description']; ?></p>
+                <div class="btns">
+                <button class="btn order-btn">Order Now</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <form method="post" action="cart_details.php">
+                <input type="hidden" name="product_id" value='<?php echo $product_id?>'>
+                <input type="hidden" name="user_id" value='<?php echo $user_id ?>'>
+                <button type="submit" class="btn add-to-cart-btn">Add to cart</button>
+                </form>
+                </div>
             </div>
-            
         </div>
         
 

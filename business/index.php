@@ -67,7 +67,7 @@
             <div class="product-details">
                 <h3>Led Rectangle Mirror(2ft * 5ft)</h3>
                 <p>This is a premium 2feet wide and 4feet tall rectangular mirror. This mirror is frameless mirror with LED lights installed into it, which makes it attractive and makes your mirror experience even more nice with proper lighting.</p>
-                <button onclick="window.location.href='product-details.php'">Learn More</button>
+                <!-- <button onclick="window.location.href='product-details.php'">Buy</button> -->
             </div>
         </div>
         
