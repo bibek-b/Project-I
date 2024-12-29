@@ -24,11 +24,6 @@ if(!$conn){
     $orderData = mysqli_fetch_assoc($OrderResult);
     $totalOrders = $orderData['total_orders'];
 
-
-// // Dummy data (replace with actual database queries in a real setup)
-// $totalProducts = 100; // Replace with query to count products
-// // $totalUsers = 50;     // Replace with query to count users
-// $totalCalculatorUses = 30; // Replace with query to track calculator usage
 ?>
 
 <!DOCTYPE html>

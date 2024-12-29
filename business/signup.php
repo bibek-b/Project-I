@@ -20,7 +20,6 @@
 
         if (!$connection) {
             die('connection failed' . mysqli_connect_error());
-        //initialize variables to check signup status
         
         }
         $signupSucess = false;

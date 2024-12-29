@@ -47,7 +47,7 @@ if (isset($_GET['delete'])) {
     if (mysqli_query($conn, $sql)) {
         echo "<script>confirm('Are you sure? you want to delete this product!');</script>";
 
-        header("Location: manage-products.php ? status=deleted");
+        header("Location: manage-products.php?status=deleted");
         exit();
     } else {
         echo "<script>alert('Error deleting product');</script>";
@@ -135,11 +135,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit_product'])) {
                         <td>{$row['title']}</td>
                         <td>{$row['price']}</td>
                         <td>
-                            &nbsp<button  onclick=\"openEditProductPopup({$row['id']}, '{$row['title']}', '{$row['price']}', '{$row['description']}', 'uploads/{$row['image']}')\">&nbsp&nbspEdit&nbsp&nbsp&nbsp</button>&nbsp&nbsp&nbsp
-                            <a  href = 'javascript:void(0);' onclick='confirmDelete({$row['id']});'>
-                            <button style='
+                            &nbsp;<button  onclick=\"openEditProductPopup(
+                            {$row["id"]}, 
+                            '{$row["title"]}', 
+                            '{$row["price"]}', 
+                            '{$row["description"]}', 
+                            'uploads/{$row["image"]}',  
+                            );\">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;
+                            </button>&nbsp;&nbsp;&nbsp;
+                            <a  href ='javascript:void(0);' onclick='confirmDelete({$row['id']});'>
+                            <button style= '
                                 background-color: #e44336;
-                                color: white;  color: #fff;
+                                color: white; 
                                 border: none;
                                 padding: 10px 15px;
                                 cursor: pointer;

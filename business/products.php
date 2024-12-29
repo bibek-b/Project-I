@@ -24,53 +24,18 @@ $result = mysqli_query($conn,$sql);
 
 
         <div class="products-container">
-            <!-- Sidebar for Product Types -->
-            <!-- <aside class="product-types">
-                <h2>Product Types</h2>
-                <ul>
-                    <li><a href="#">Type 1</a></li>
-                    <li><a href="#">Type 2</a></li>
-                    <li><a href="#">Type 3</a></li>
-                    <li><a href="#">Type 4</a></li>
-                </ul>
-            </aside> -->
-
-            <!-- Main Product List -->
             <section class="products-list">
-
-                <!-- Product Card Example (Add dynamic product cards here) -->
-                <!-- <div class="product-card">
-                    <img src="assets/images/black-logo.png" alt="Product 1">
-                    <h3>Product Title 1</h3>
-                    <p>Price: $XX.XX</p>
-                    <p>Short description of Product 1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, illum. </p>
-                </div>
-                
-                <div class="product-card">
-                    <img src="path/to/image2.jpg" alt="Product 2">
-                    <h3>Product Title 2</h3>
-                    <p>Price: $XX.XX</p>
-                    <p>Short description of Product 2.</p>
-                </div>
-                
-                <div class="product-card">
-                    <img src="path/to/image3.jpg" alt="Product 3">
-                    <h3>Product Title 3</h3>
-                    <p>Price: $XX.XX</p>
-                    <p>Short description of Product 3.</p> 
-                 </div> -->
-                
-                <!-- Add more product cards dynamically as needed -->
-
                 <?php 
                     if($result && mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_assoc($result)){
+                            $product_id = $row['product_id'];
                             echo "
-                               <div class='product-card'>
+                            <div class='product-card' onclick= 'window.location.href=\"product.php?product_id={$product_id}\"'>
                     <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image'>
                     <h3>{$row['title']}</h3>
-                    <p>Price: Rs. {$row['price']}</p>
                     <p>{$row['description']}</p> 
+                    <p style='color: orangered;'>Price: Rs. {$row['price']}</p>
+                    
                  </div> 
                 ";
                         }
@@ -81,8 +46,6 @@ $result = mysqli_query($conn,$sql);
               
             </section>
         </div>
-
-        
     </div>
 
     <?php include 'includes/footer.php'; ?>

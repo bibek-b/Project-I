@@ -140,17 +140,18 @@ html, body {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s; /* Smooth scaling effect */
     
     /* Limit the height of the cards */
-    height: 350px; /* Set a fixed height or max height */
+    height: 370px; /* Set a fixed height or max height */
     display: flex; /* Use flexbox to arrange content */
     flex-direction: column; /* Stack items vertically */
     justify-content: center; /* Space out the content */
     align-items: center;
+    overflow-wrap: break-word;
 }
 
 .product-card img {
@@ -173,7 +174,32 @@ html, body {
     font-size: 1rem;
     color: #666;
 }
-
+.product-details-container{
+    margin: 30px 0  0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(128, 128, 128, 0.09);
+    width: 50%;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 30px;
+    
+}
+.product-info{
+    width: 100%;
+    margin-left: 40px;
+}
+.product-info .btn{
+    margin-top: 60px;
+}
+.product-image img{
+    width: 300px;
+    object-fit: cover;
+}
+.btns{
+    display: flex;
+}
 
 
 /* Responsive adjustments */
