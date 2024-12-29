@@ -92,27 +92,17 @@
             background-color: #e44336;
             color: white;
         }
-
-        .details-container {
+        #details-container {
             margin-top: 20px;
             display: none;
         }
 
-        .show-details {
+        .glass-details {
             text-align: right;
             cursor: pointer;
             color: var(--first);
             text-decoration: underline;
         }
-        .details-container {
-            display: none;
-            /* Other styles */
-          }
-          
-          .details-container.active {
-            display: block;
-            /* Other styles */
-          }
           
 
         @media (max-width: 576px) {

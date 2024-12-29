@@ -70,6 +70,7 @@ function toggleMenu() {
 
     //displays an alert msg when editing product is successfull
     document.addEventListener('DOMContentLoaded', () => {
+        
       const formElements = document.querySelectorAll('#productForm input,#productForm textarea');
       const isModifiedField = document.getElementById('isModified');
 

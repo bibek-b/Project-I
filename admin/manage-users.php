@@ -5,6 +5,7 @@ if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
 }
 
+
 $error_msg = '';
 $show_add_user_popup = false;
 
@@ -70,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
 // Fetch users from the database
 $sql = "SELECT user_id, username, email, role FROM users";
 $result = $conn->query($sql);
+
 
 ?>
 

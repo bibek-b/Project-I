@@ -4,48 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-<nav class="navbar">
-    <div class="container">
-        <div class="logo">
-            <a href="index.php">
-                <img src="assets/images/white-logo.png" alt="Logo">
-            </a>
-        </div>
 
-        <!-- Hamburger icon for smaller screens -->
-        <div class="menu-icon" onclick="toggleMenu()">
-            ☰
-        </div>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="products.php">Products</a></li>
-            <li><a href="about.php">About</a></li>
-            <li><a href="calculate.php">Calculate</a></li>
-        </ul>
-
-        <div id="auth">
-            <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
-            <div class="user-info">
-                <div class="icon-section">
-                    <img src="assets/images/user-icon1.png" alt="User Icon" class="user-icon">
-                    <form action="logout.php" method="post" style="display: inline;" class="logout-form">
-                        <button type="submit" class="logout-btn">Logout</button>
-                    </form>
-                </div>
-                <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-            </div>
-
-        <?php else: ?>
-            <div class="auth-links">
-                <a href="login.php">Login</a>
-                <a href="signup.php">Sign Up</a>
-            </div>
-        <?php endif; ?>
-        </div>
-    </div>
-</nav>
 
 <style>
     .user-info {
@@ -98,4 +57,66 @@ if (session_status() === PHP_SESSION_NONE) {
     .logout-btn:hover {
         background-color: #c00;
     }
+    .carts{
+    padding: 10px;
+    position: absolute;
+    right: 140px;
+    cursor: pointer;
+}
+#cart{
+    width: 30px;
+}
 </style>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="index.php">
+                <img src="assets/images/white-logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger icon for smaller screens -->
+        <div class="menu-icon" onclick="toggleMenu()">
+            ☰
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="services.php">Services</a></li>
+            <li><a href="products.php">Products</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="calculate.php">Calculate</a></li>
+        </ul>
+        <div class="carts" onclick="MoveToCart()">
+            <img src="./assets/images/carts.png"  id="cart"/>
+            <h3>Cart</h3>
+            </div>
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
+            <div class="user-info">
+                <div class="icon-section">
+                    <img src="assets/images/user-icon1.png" alt="User Icon" class="user-icon">
+                    <form action="./login.php" method="post" style="display: inline;" class="logout-form">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+                <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>    
+            </div>
+
+        <?php else: ?>
+            <div class="auth-links">
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </div>
+        <?php endif; ?>
+    </div>
+</nav>
+
+<script>
+    function MoveToCart(){
+        setTimeout(() => {
+            window.location.href = 'cart_details.php';
+        }, 1000);
+    }
+
+</script>

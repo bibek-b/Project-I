@@ -15,10 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
     section.className = "section";
     section.innerHTML = `
             <div class="selectors">
+            <div style='margin:10px 0-15px;'><span>Unit:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Thickness:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Color:</span></div>
                 <select class="unit-selector">
                     <option value="inches">Inches</option>
                     <option value="cm">Cm</option>
                 </select>
+              
                 <select class="thickness-selector">
                     <option value="5mm">5mm</option>
                     <option value="6mm">6mm</option>
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <option value="10mm">10mm</option>
                     <option value="12mm">12mm</option>
                 </select>
+                
                 <select class="color-selector">
                     <option value="black">Black</option>
                     <option value="blue">Blue</option>
