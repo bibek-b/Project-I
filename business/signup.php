@@ -47,11 +47,12 @@
                 $email_error_msg = 'This email is already registered. please use a different email.';
                 
             } else {
+                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 //insert new user if email doesn't exist
                 $stmt->close();
-                $stmt = $connection->prepare('insert into users(userName,email,password,confirm_Password,phone,address)
-                    values(?,?,?,?,?,?)');
-                $stmt->bind_param('ssssss', $userName, $email, $password, $confirm_Password,$phone,$address);
+                $stmt = $connection->prepare('insert into users(userName,email,password,phone,address)
+                    values(?,?,?,?,?)');
+                $stmt->bind_param('sssss', $userName, $email, $hashedPassword,$phone,$address);
                 $stmt->execute();
                 $signupSucess = true;
             }

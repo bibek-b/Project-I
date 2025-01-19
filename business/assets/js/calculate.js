@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const placeOrderBtn = document.getElementById("place-order-btn");
   const sectionsContainer = document.getElementById("sections-container");
   const prices = {
-    "5mm": { black: 1100, blue: 115, clear: 120, green: 125 },
+    "5mm": { black: 100, blue: 115, clear: 120, green: 125 },
     "6mm": { black: 140, blue: 145, clear: 150, green: 155 },
     "8mm": { black: 190, blue: 195, clear: 200, green: 205 },
     "10mm": { black: 250, blue: 255, clear: 260, green: 265 },
@@ -288,47 +288,3 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("calculate-total-btn")
     .addEventListener("click", calculateTotal);
 });
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the user is logged in by looking at the data attribute
-  const isLoggedIn = document.querySelector('#calc-container').dataset.logggedIn === 'true';
-  
-  if (isLoggedIn) {
-      fetchOrders(); // Fetch orders on page load if logged in
-  }
-});
-
-function fetchOrders() {
-  // Send AJAX request to fetch orders from the server
-  fetch("calculate.php?fetch_order=true")
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              displayOrders(data.orders); // If orders are found, display them
-          } else {
-              document.getElementById("order-status-content").innerHTML = "<p>No orders found.</p>"; // Show message if no orders
-              
-          }
-      })
-      .catch(error => {
-          console.error("Error fetching orders:", error);
-          document.getElementById("order-status").innerHTML = "<p>Error loading orders.</p>";
-      });
-}
-
-function displayOrders(orders) {
-  // Create the unordered list to display orders
-  const orderStatusDiv = document.getElementById("order-status-content");
- 
-  const ul = document.createElement("ul");
-  orders.forEach(order => {
-      const li = document.createElement("li");
-      li.textContent = `Order ${order.order_id}: ${order.status}`;
-      ul.appendChild(li);
-      
-  });
-
-  orderStatusDiv.appendChild(ul);
-  
-}

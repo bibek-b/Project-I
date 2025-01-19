@@ -33,6 +33,7 @@ $result = mysqli_query($conn,$sql);
                             <div class='product-card' onclick= 'window.location.href=\"product.php?product_id={$product_id}\"'>
                     <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image'>
                     <h3>{$row['title']}</h3>
+                     <p>{$row['length']}mm / {$row['breadth']}mm</p> 
                     <p>{$row['description']}</p> 
                     <p style='color: orangered;'>Price: Rs. {$row['price']}</p>
                     

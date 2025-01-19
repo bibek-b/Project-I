@@ -374,12 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div id="statusMessage" style="font-size:1.2rem; margin-top: 1rem;"></div>
         </div>
-        <div id="order-status" style="display:<?php echo $isLoggedIn ? 'block' : 'none'; ?>">
-            <h4>Order Status</h4>
-          <div id="order-status-content">
-
-          </div>
-        </div>
+      
 
         <?php include 'includes/footer.php'; ?>
     </div>

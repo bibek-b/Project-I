@@ -87,6 +87,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="products.php">Products</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="calculate.php">Calculate</a></li>
+            <li><a href="order_details.php">Order Details</a></li>
         </ul>
         <div class="carts" onclick="MoveToCart()">
             <img src="./assets/images/carts.png"  id="cart"/>

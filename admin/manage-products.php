@@ -6,11 +6,12 @@ if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
 }
 
-
 //handles add products
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['add_product'])) {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $length = mysqli_real_escape_string($conn, $_POST['length']);
+    $breadth = mysqli_real_escape_string($conn, $_POST['breadth']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['add_product'])) {
     $imageFolder = 'uploads/' . $imageName;
 
     if (move_uploaded_file($imageTmpName, $imageFolder)) {
-        $sql = "insert into products (title,image,price,description) values('$title','$imageName','$price','$description')";
+        $sql = "insert into products (title,image,length,breadth,price,description) values('$title','$imageName','$length','$breadth','$price','$description')";
         if (mysqli_query($conn, $sql)) {
             
             echo "<script>
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['add_product'])) {
 if (isset($_GET['delete'])) {
     $productId = $_GET['delete'];
 
-    $sql = "delete from products where id = '$productId'";
+    $sql = "delete from products where product_id = '$productId'";
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>confirm('Are you sure? you want to delete this product!');</script>";
@@ -64,23 +65,26 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit_product'])) {
         exit();
     }
 
-    $id = intval($_POST['product_id']);
+    $product_id = intval($_POST['product_id']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
+   
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $imageName = $_FILES['image']['name'];
+    $length = mysqli_real_escape_string($conn, $_POST['length']);
+    $breadth = mysqli_real_escape_string($conn, $_POST['breadth']);
 
     if (!empty($imageName)) { // Update image if new one is uploaded
         $imageTmpName = $_FILES['image']['tmp_name'];
         $imageFolder = 'uploads/' . $imageName;
 
         if (move_uploaded_file($imageTmpName, $imageFolder)) {
-            $sql = "UPDATE products SET title='$title', price='$price', description='$description', image='$imageName' WHERE id=$id";
+            $sql = "UPDATE products SET title='$title', price='$price', description='$description', length='$length',breadth='$breadth',image='$imageName' WHERE id=$id";
         } else {
             echo "<script>alert('Failed to upload image');</script>";
         }
     } else { // Retain the old image
-        $sql = "UPDATE products SET title='$title', price='$price', description='$description' WHERE id=$id";
+        $sql = "UPDATE products SET title='$title',price='$price', description='$description',length='$length',breadth='$breadth' WHERE product_id=$product_id";
     }
 
     if (mysqli_query($conn, $sql)) {
@@ -136,14 +140,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit_product'])) {
                         <td>{$row['price']}</td>
                         <td>
                             &nbsp;<button  onclick=\"openEditProductPopup(
-                            {$row["id"]}, 
+                            {$row["product_id"]}, 
                             '{$row["title"]}', 
+                              '{$row['length']}', 
+                            '{$row['breadth']}', 
                             '{$row["price"]}', 
                             '{$row["description"]}', 
-                            'uploads/{$row["image"]}',  
+                            'uploads/{$row["image"]}',
+                           
                             );\">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;
                             </button>&nbsp;&nbsp;&nbsp;
-                            <a  href ='javascript:void(0);' onclick='confirmDelete({$row['id']});'>
+                            <a  href ='javascript:void(0);' onclick='confirmDelete({$row['product_id']});'>
                             <button style= '
                                 background-color: #e44336;
                                 color: white; 
@@ -180,6 +187,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit_product'])) {
                     <label for="image">Image:</label>
                     <input type="file" id="image" name="image" accept="image/png, image/jpeg" onchange="previewImage(event)">
                     <img id="imagePreview" alt="Image Preview" style="display:none; width: 100px; height: auto; margin-top: 10px;">
+                    
+                    <label for="length">Length:</label>
+                    <input type="number" id="length" name="length" required>
+
+                    <label for="breadth">Breadth:</label>
+                    <input type="number" id="breadth" name="breadth" required>
 
                     <label for="price">Price:</label>
                     <input type="number" id="price" name="price" required>

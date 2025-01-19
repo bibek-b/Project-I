@@ -8,7 +8,8 @@ function toggleMenu() {
 
     //add products
     function openAddProductPopup() {
-        document.getElementById('product-popup').style.display = 'block';
+        const productPopup =  document.getElementById('product-popup');
+        productPopup.style.display = 'block';
         document.getElementById('popupTitle').innerText = 'Add New Product';
 
     }
@@ -36,7 +37,7 @@ function toggleMenu() {
     }
 
     //edit products
-    function openEditProductPopup(id, title, price, description, image) {
+    function openEditProductPopup(id, title,length,breadth, price, description, image) {
      document.getElementById('product-popup').style.display = 'block';
         document.getElementById('popupTitle').innerText = 'Edit Product';
     
@@ -46,8 +47,14 @@ function toggleMenu() {
         // Populates form fields with product data
         document.getElementById('editIndex').value = id;
         document.getElementById('title').value = title;
+        
         document.getElementById('price').value = price;
+        
         document.getElementById('description').value = description;
+        
+        document.getElementById('length').value = length;
+        document.getElementById('breadth').value = breadth;
+        
     
         const imagePreview = document.getElementById('imagePreview');
         imagePreview.src = image;

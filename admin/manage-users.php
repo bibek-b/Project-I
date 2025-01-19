@@ -1,4 +1,5 @@
 <?php
+
 $conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
 
 if (!$conn) {
@@ -66,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
         }
     }
     $checkStmt->close();
+    exit();
 }
 
 // Fetch users from the database
