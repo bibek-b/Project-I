@@ -35,6 +35,8 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         event.preventDefault();
         const form = event.target.closest('form');
         const formData = new FormData(form);
+        
+
 
         try {
             const response = await fetch(form.action, {
@@ -43,12 +45,19 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             });
 
             if (response.ok) {
+                if(isLoggedIn){
                 const userConfirmation = confirm("Are you sure ? You want to add this product to the cart!")
                 if(userConfirmation){
                     setTimeout(() => {
                         window.location.href = 'cart_details.php';
                     }, 1000);
                 } 
+            } else{
+                alert("Please Login First!");
+                setTimeout(() => {
+                    window.location.href = 'login.php';
+                }, 1000);
+            }
             } else {
                 console.error('Error:', response.statusText);
                 alert('Failed to add product to cart. Please try again.');

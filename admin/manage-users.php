@@ -1,6 +1,17 @@
 <?php
 
-$conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+session_start();
+if (!isset($_SESSION['Admin'])) {
+    header('Location: ./logout.php');
+    exit();
+}
+
+// echo '<pre>';
+// print_r($_SESSION);  // Check the session data
+// echo '</pre>';
+
+
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
@@ -58,21 +69,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
             // echo "<script>alert('Password doesnot match');</script>";
             $error_msg = 'Password doesnot match';
             $show_add_user_popup = true;
-        } else {
-            $stmt = $conn->prepare('insert into users (username,email,password,confirm_Password,role) values (?, ?, ?, ?,?)');
-            $stmt->bind_param('sssss', $username, $email, $password, $confirm_Password, $role);
+        } else if(strlen($password) < 8){
+            $error_msg = 'Password must be 8 characters long!';
+            $show_add_user_popup = true;
+        }
+         else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare('insert into users (username,email,password,role) values (?, ?, ?, ?)');
+            $stmt->bind_param('ssss', $username, $email, $hashed_password, $role);
             $stmt->execute();
             $stmt->close();
             echo "<script>alert('User added successfully');</script>";
         }
     }
     $checkStmt->close();
-    exit();
 }
 
-// Fetch users from the database
-$sql = "SELECT user_id, username, email, role FROM users";
-$result = $conn->query($sql);
 
 
 ?>
@@ -107,44 +119,48 @@ $result = $conn->query($sql);
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="user-table-body">
-                    <!-- User rows will be dynamically added here -->
-                    <?php if ($result->num_rows > 0): ?>
-                        <?php $sn = 1; ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
-                            <tr id="user-row-<?php echo $row['user_id']; ?>">
-                                <td><?php echo $sn++; ?></td>
-                                <td><?php echo htmlspecialchars($row['username']); ?></td>
-                                <td><?php echo htmlspecialchars($row['email']); ?></td>
-                                <td><?php echo htmlspecialchars($row['role']); ?></td>
-                                <td>
-                                    <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                                        <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
-                                        <button style="
-                                                   background-color: #e44336;
-                                                   color: white;  color: #fff;
-                                                   border: none;
-                                                   padding: 10px 15px;
-                                                   cursor: pointer;
-                                                   border-radius: 5px;" name="delete_user">
-                                                   Delete
-                                                </button>
-                                    </form>
-                                    &nbsp;
-                                    &nbsp;
-                                    &nbsp;
-                                    <button type="submit" onclick="openEditPopup('<?php echo $row['user_id']; ?>','<?php echo $row['role']; ?>')">Edit Role</button>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="5">No users found</td>
-                        </tr>
-                    <?php endif; ?>
+                <?php
+// Fetch users from the database
+$sql = "SELECT user_id, username, email, role FROM users";
+$result = $conn->query($sql);
 
+if ($result->num_rows > 0) {
+    $sn = 1; // Initialize serial number counter
+} else {
+    echo 'No users found.';
+}
+?>
 
-                </tbody>
+<tbody id="user-table-body">
+    <!-- User rows will be dynamically added here -->
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr id="user-row-<?php echo $row['user_id']; ?>">
+                <td><?php echo $sn++; ?></td>
+                <td><?php echo htmlspecialchars($row['username']); ?></td>
+                <td><?php echo htmlspecialchars($row['email']); ?></td>
+                <td><?php echo htmlspecialchars($row['role']); ?></td>
+                <td>
+                    <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+                        <button style="background-color: #e44336; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px;" name="delete_user">
+                            Delete
+                        </button>
+                    </form>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <button type="submit" onclick="openEditPopup('<?php echo $row['user_id']; ?>','<?php echo $row['role']; ?>','<?php echo $sn - 1; ?>')">Edit Role</button>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="5">No users found</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
+
             </table>
         </div>
 
@@ -159,7 +175,7 @@ $result = $conn->query($sql);
                     <input type="hidden" id="editUserId" name="user_id"> <!-- Hidden input to track the user ID for editing -->
 
                     <label for="role">
-                        Sn: <span><?php echo $sn ?></span>
+                        Sn: <span class="sn"></span>
                         <br>
                         Role:
 
@@ -197,8 +213,8 @@ $result = $conn->query($sql);
 
                     <label for="role">Role:</label>
                     <select id="role" name="role">
+                    <option value="User">User</option>
                         <option value="Admin">Admin</option>
-                        <option value="User">User</option>
                     </select>
 
                     <button type="submit" name="add_user" class="save-btn">Add User</button>

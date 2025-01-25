@@ -37,28 +37,29 @@ function toggleMenu() {
     }
 
     //edit products
-    function openEditProductPopup(id, title,length,breadth, price, description, image) {
-     document.getElementById('product-popup').style.display = 'block';
-        document.getElementById('popupTitle').innerText = 'Edit Product';
+    function openEditProductPopup(productData) {
+        // Parse the JSON object if necessary
+        const product = typeof productData === "string" ? JSON.parse(productData) : productData;
     
-        document.getElementById('add-product').style.display = 'none';
-        document.getElementById('edit-product').style.display = 'block';
+        // Populate the form fields
+        document.getElementById("popupTitle").textContent = "Edit Product";
+        document.getElementById("editIndex").value = product.product_id;
+        document.getElementById("title").value = product.title;
+        document.getElementById("price").value = product.price;
+        document.getElementById("description").value = product.description;
     
-        // Populates form fields with product data
-        document.getElementById('editIndex').value = id;
-        document.getElementById('title').value = title;
-        
-        document.getElementById('price').value = price;
-        
-        document.getElementById('description').value = description;
-        
-        document.getElementById('length').value = length;
-        document.getElementById('breadth').value = breadth;
-        
+        if (product.image) {
+            const imagePreview = document.getElementById("imagePreview");
+            imagePreview.src = product.image;
+            imagePreview.style.display = "block";
+        }
     
-        const imagePreview = document.getElementById('imagePreview');
-        imagePreview.src = image;
-        imagePreview.style.display = 'block';
+        // Show the popup
+        document.getElementById("product-popup").style.display = "block";
+    
+        // Switch buttons for Edit mode
+        document.getElementById("add-product").style.display = "none";
+        document.getElementById("edit-product").style.display = "block";
     }
     
     function closeAddProductPopup() {
@@ -109,9 +110,10 @@ function toggleMenu() {
 
 //edit popup
 
-function openEditPopup(userId, currentRole) {
+function openEditPopup(userId, currentRole,serialNumber) {
     document.getElementById('editUserId').value = userId;
     document.getElementById('editRole').value = currentRole;
+    document.getElementById('editRolePopup').querySelector('span.sn').innerText = serialNumber;
     document.getElementById('editRolePopup').style.display = 'block';
     document.getElementsByClassName('popup').style.padding = '50px';
 

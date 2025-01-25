@@ -1,16 +1,15 @@
 
-
 <?php
 
-$conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
 }
 
 session_start();
-$isLoggedIn = isset($_SESSION['user_id']);
-$user_id = $isLoggedIn ? $_SESSION['user_id'] : null;
+$isLoggedIn = isset($_SESSION['User']);
+$user_id = $isLoggedIn ? $_SESSION['User']['user_id'] : null;
 
 $orderStatuses = [];
 

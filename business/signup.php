@@ -16,7 +16,7 @@
         <?php
         //signup
         //connection
-        $connection = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+        $connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
         if (!$connection) {
             die('connection failed' . mysqli_connect_error());

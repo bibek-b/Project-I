@@ -4,7 +4,7 @@ session_start();
 error_reporting(E_ALL);
 include 'includes/navbar.php';
 
-$conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$conn) {
     die('Database connection failed: ' . mysqli_connect_error());
@@ -12,7 +12,7 @@ if (!$conn) {
 
 // Get the product ID from the URL
 $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
-$user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
+$user_id = isset($_SESSION['User']) ? intval($_SESSION['User']['user_id']) : 0;
 
 // Fetch product details
 $sql = "SELECT * FROM products WHERE product_id = ?";
@@ -41,11 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
         if ($user_result->num_rows > 0) {
             $user = $user_result->fetch_assoc();
 
-            // Calculate order details
-            $length = $product['length'];
-            $breadth = $product['breadth'];
-            $total_sqr_ft = round(($length * $breadth) / 144, 2);
-            $total_price = $total_sqr_ft * $product['price'];
+            $total_price = '';
 
             // Check if the order already exists
             $order_check_query = "SELECT * FROM orders WHERE user_id = ? AND product_id = ?";
@@ -62,15 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
             </script>";
         
             } else {
+                // Calculate total price
+                $total_price = $product['price'];
+
                 // Insert the order into the database
                 $insert_order_query = "
                 INSERT INTO orders 
-                (user_id, username, address, phone, email, product_id, product_title, length, breadth, total_sqr_ft, total_price, status) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')";
+                (user_id, username, address, phone, email, product_id, product_title, total_price, status) 
+                VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, 'pending')";
 
                 $stmt = $conn->prepare($insert_order_query);
                 $stmt->bind_param(
-                    'issssisssdd',
+                    'issssisd',
                     $user_id,
                     $user['username'],
                     $user['address'],
@@ -78,9 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
                     $user['email'],
                     $product_id,
                     $product['title'],
-                    $length,
-                    $breadth,
-                    $total_sqr_ft,
                     $total_price
                 );
 
@@ -90,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
                      if(userChoice){
                        setTimeout(() => {
                               alert('Order Placed Successfully!');
-                                window.location.reload();
+                                window.reload();
                            }, 1000);
                        }
                 </script>";
@@ -105,6 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
         echo "<script>alert('Please log in to place an order.');</script>";
     }
 }
+
+$is_logged_in = $user_id > 0 ? 'true' : 'false';
+echo "<script>var isLoggedIn = $is_logged_in;</script>";
 ?>
 
 
@@ -126,8 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
             </div>
             <div class="product-info">
                 <h1><?php echo $product['title']; ?></h1>
-                <p>Length: <?php echo $product['length'] ?> mm</p>
-                <p>Breadth: <?php echo $product['breadth'] ?> mm</p>
                 <p style='color: orangered;'><strong>Price:</strong> Rs. <?php echo $product['price']; ?></p>
                 <p><?php echo $product['description']; ?></p>
                 <div class="btns">

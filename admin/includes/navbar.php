@@ -1,26 +1,23 @@
 <!-- includes/navbar.php -->
 
-
 <?php
-session_start();
-
-$conn = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$conn) {
     die('connection failed' . mysqli_connect_error());
 }
 
-
 $adminImage = 'assets/images/admin-icon.png';
 
-if (isset($_SESSION['admin_id'])) {
-    $adminId = $_SESSION['admin_id'];
-    $result = mysqli_query($conn, "SELECT * FROM admin WHERE id = '$adminId'");
+if (isset($_SESSION['Admin'])) {
+    $adminId = $_SESSION['Admin']['user_id'];
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$adminId'");
     if ($result && mysqli_num_rows($result) > 0) {
         $adminData = mysqli_fetch_assoc($result); 
     }
 }
-
+// Get the current page name to determine the active link
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
 <style>
@@ -82,7 +79,26 @@ if (isset($_SESSION['admin_id'])) {
         background-color: #fff;
         color: #000;
     }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 15px;
+        transition: background-color 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .nav-links li a.active {
+        background-color: #22D3EE; /* Highlight color for active link */
+        color: white;
+        font-weight: bold;
+    }
+
+    .nav-links li a:hover {
+        background-color: #22D3EE;
+    }
 </style>
+
 <nav class="navbar">
     <div class="container">
         <div class="logo">
@@ -97,26 +113,24 @@ if (isset($_SESSION['admin_id'])) {
         </div>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="dashboard.php" class="nav-link" data-target="dashboard.php">Dashboard</a></li>
-            <li><a href="manage-products.php" class="nav-link" data-target="manage-products.php">Manage Products</a></li>
-            <li><a href="manage-users.php" class="nav-link" data-target="manage-users.php">Manage Users</a></li>
-            <li><a href="manage-calculator.php" class="nav-link" data-target="manage-calculator.php">Manage Calculator</a></li>
-            <li><a href="order-page.php" class="nav-link" data-target="order-page.php">Manage Order</a></li>
+            <li><a href="dashboard.php" class="<?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">Dashboard</a></li>
+            <li><a href="manage-products.php" class="<?php echo $current_page == 'manage-products.php' ? 'active' : ''; ?>">Manage Products</a></li>
+            <li><a href="manage-users.php" class="<?php echo $current_page == 'manage-users.php' ? 'active' : ''; ?>">Manage Users</a></li>
+            <li><a href="order-page.php" class="<?php echo $current_page == 'order-page.php' ? 'active' : ''; ?>">Manage Order</a></li>
         </ul>
 
         <div class="auth-links">
-            <?php if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])): ?>
+            <?php if (isset($_SESSION['Admin'])): ?>
                 <div class="admin-info">
                     <img src="<?php echo htmlspecialchars($adminImage); ?>" alt="Admin Icon" class="admin-icon">
-                    <span class="admin-name"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-
+                    <span class="admin-name"><?php echo htmlspecialchars($_SESSION['Admin']['username']); ?></span>
                 </div>
-                    <button onclick="window.location.href = '../business/login.php'" class="logout-btn">Logout</button>
-                </form>
+                <button onclick="window.location.href = '/Project-I/admin/logout.php'" class="logout-btn">Logout</button>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
     </div>
 </nav>
+
 <script>
     function toggleMenu() {
         const navLinks = document.querySelector('.nav-links');

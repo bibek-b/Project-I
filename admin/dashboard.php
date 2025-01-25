@@ -1,7 +1,13 @@
 
 <?php
 
-$conn = mysqli_connect('localhost','root','ngg12#1','GlassGuruDB');
+session_start();
+if (!isset($_SESSION['Admin'])) {
+    header('Location: ./logout.php');
+    exit();
+}
+
+$conn = mysqli_connect('localhost','root','','GlassGuruDB');
 
 if(!$conn){
     die('Database connection failed: ' .mysqli_connect_error());

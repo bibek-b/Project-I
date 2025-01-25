@@ -1,6 +1,7 @@
 <?php include 'includes/navbar.php'; ?>
-<?php 
-$conn = mysqli_connect('localhost','root','ngg12#1','GlassGuruDB');
+<?php
+
+$conn = mysqli_connect('localhost','root','','GlassGuruDB');
 
 if(!$conn){
     die('Database connection failed: ' .mysqli_connect_error());
@@ -31,10 +32,8 @@ $result = mysqli_query($conn,$sql);
                             $product_id = $row['product_id'];
                             echo "
                             <div class='product-card' onclick= 'window.location.href=\"product.php?product_id={$product_id}\"'>
-                    <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image'>
+                    <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image' style='width: 100%; height: 150px;'>
                     <h3>{$row['title']}</h3>
-                     <p>{$row['length']}mm / {$row['breadth']}mm</p> 
-                    <p>{$row['description']}</p> 
                     <p style='color: orangered;'>Price: Rs. {$row['price']}</p>
                     
                  </div> 

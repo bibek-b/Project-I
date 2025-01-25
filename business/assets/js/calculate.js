@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   //checks if user is logged in and handle 'place order'
   placeOrderBtn.addEventListener("click", function () {
-    const orderStatusDiv = document.getElementById('order-status');
+    // const orderStatusDiv = document.getElementById('order-status');
     const sections = document.querySelectorAll(".section");
     const orders = [];
     let totalPrice = 0;
@@ -240,7 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (data.success) {
           // Display success message
-          alert(data.alert);
+          if (data.alert) {
+            alert(data.alert);
+          }
         
           statusMessageDiv.innerText = data.statusMessage; // "Your order is pending."
           statusMessageDiv.style.color = "green";

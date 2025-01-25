@@ -1,4 +1,33 @@
 <!-- index.php -->
+<?php 
+
+$conn = mysqli_connect('localhost','root', '', 'GlassGuruDB');
+
+if(!$conn){
+    echo 'Error connecting database.'.$mysql->error;
+}
+
+$sql =  'select product_id, title, image, description from products where product_id = 26';
+
+$result = mysqli_query($conn,$sql);
+if (!$result) {
+    echo 'Error fetching products: ' . mysqli_error($conn);
+    exit;
+}
+    $row = mysqli_fetch_assoc($result);
+
+$sql1 =  'select product_id, title, image, description from products where product_id = 27';
+
+$result1 = mysqli_query($conn,$sql1);
+if (!$result1) {
+    echo 'Error fetching products: ' . mysqli_error($conn);
+    exit;
+}
+    $row1 = mysqli_fetch_assoc($result1);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,14 +89,14 @@
 
 
     <!-- Featured Product Section -->
-    <section class="featured-product">
+    <!-- <section class="featured-product">
         <h2>Featured Product</h2>
         <div class="product-content">
             <img src="assets/images/rectangle-mirror.jpg" alt="Rectangle Mirror">
             <div class="product-details">
                 <h3>Led Rectangle Mirror(2ft * 5ft)</h3>
                 <p>This is a premium 2feet wide and 4feet tall rectangular mirror. This mirror is frameless mirror with LED lights installed into it, which makes it attractive and makes your mirror experience even more nice with proper lighting.</p>
-                <!-- <button onclick="window.location.href='product-details.php'">Buy</button> -->
+                <button onclick="window.location.href='product-details.php'">Learn More</button>
             </div>
         </div>
         
@@ -80,7 +109,31 @@
             </div>
             <img src="assets/images/book-shelf.jpg" alt="Book Shelf">
         </div>
-    </section>
+    </section> -->
+    <section class="featured-product">
+    <h2>Featured Products</h2>
+
+    <!-- First Product -->
+    <div class="product-content" id="product-<?php echo htmlspecialchars($row['product_id']); ?>">
+        <img src="assets/images/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['title']); ?>">
+        <div class="product-details">
+            <h3><?php echo htmlspecialchars($row['title']); ?></h3>
+            <p><?php echo htmlspecialchars($row['description']); ?></p>
+            <button onclick="window.location.href='product.php?product_id=<?php echo htmlspecialchars($row['product_id']); ?>'">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Second Product -->
+    <div class="product-content" id="product-<?php echo htmlspecialchars($row1['product_id']); ?>">
+        <div class="product-details">
+            <h3><?php echo htmlspecialchars($row1['title']); ?></h3>
+            <p><?php echo htmlspecialchars($row1['description']); ?></p>
+            <button onclick="window.location.href='product.php?product_id=<?php echo htmlspecialchars($row1['product_id']); ?>'">Learn More</button>
+        </div>
+        <img src="assets/images/<?php echo htmlspecialchars($row1['image']); ?>" alt="<?php echo htmlspecialchars($row1['title']); ?>">
+    </div>
+</section>
+
 
 
 
@@ -104,8 +157,8 @@
                 <p>Co-founder of Nepal Glass Guru. Front end developer of the project. </p>
             </div>
             <div class="member-item">
-                <img src="assets/images/member2.jpg" alt="Member 2">
-                <h3>Bibek BK</h3>
+                <img src="assets/images/bibek.png" alt="Member 2">
+                <h3>Bibek B.K</h3>
                 <p>Co-Founder of Nepal Glass Guru. Back end developer of the project.</p>
             </div>
         </div>

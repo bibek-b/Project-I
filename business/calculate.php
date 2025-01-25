@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-$isLoggedIn = isset($_SESSION['user_id']); // Checks if the user is logged in
-$user_id = $isLoggedIn ?$_SESSION['user_id'] : null;
+$isLoggedIn = isset($_SESSION['User']); // Checks if the user is logged in
+$user_id = $isLoggedIn ?$_SESSION['User']['user_id'] : null;
 
-$connection = mysqli_connect('localhost', 'root', 'ngg12#1', 'GlassGuruDB');
+$connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
 if (!$connection) {
     die('Connection failed: ' . mysqli_connect_error());
@@ -36,7 +36,7 @@ function getUserDetails($connection, $user_id) {
 // Handles order placement
 if (isset($_POST['place_order'])) {
     if ($isLoggedIn) {
-        $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['User']['user_id'];
         $userDetails = getUserDetails($connection, $user_id);
 
         if ($userDetails) {
@@ -123,41 +123,6 @@ if (isset($_POST['place_order'])) {
     exit();
 }
 
-//loads the order details from the db
-
-if (isset($_GET['fetch_order']) && $isLoggedIn) {
-
-    // Fetch the user's orders from the database
-    $query = 'SELECT order_id, status FROM orders WHERE user_id = ? ORDER BY order_id DESC';
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $user_id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    $orderStatuses = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $orderStatuses[] = [
-            'order_id' => $row['order_id'],
-            'status' => ucfirst($row['status']) // Capitalize the status
-        ];
-    }
-
-    // Respond with JSON
-    if (empty($orderStatuses)) {
-        echo json_encode([
-            'success' => false,
-            'orders' => [],
-            'message' => 'No orders found.'
-        ]);
-    } else {
-        echo json_encode([
-            'success' => true,
-            'orders' => $orderStatuses
-        ]);
-    }
-    
-    exit();
-}
 
 // Handle order status update
 
