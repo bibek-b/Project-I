@@ -1,4 +1,3 @@
-
 <?php
 
 $conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
@@ -34,6 +33,7 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,34 +41,33 @@ mysqli_close($conn);
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/order-details.css">
 </head>
+
 <body>
-<?php include 'includes/navbar.php'; ?>
-<div id="order-container">
-    
-    <section class="order-details">
-    <h2>Your Order Details</h2>
-        <?php if ($isLoggedIn): ?>
-            <?php if (!empty($orderStatuses)): ?>
-                <?php foreach ($orderStatuses as $order): ?>
-                    <div class="order-item">
-                        <h3>Order ID: <?php echo htmlspecialchars($order['order_id']); ?></h3>
-                        <p>Status: <?php echo htmlspecialchars($order['status']); ?></p>
-                        <br>
-                    </div>
-                <?php endforeach; ?>
+    <?php include 'includes/navbar.php'; ?>
+    <div id="order-container">
+
+        <section class="order-details">
+            <h2>Your Order Details</h2>
+            <?php if ($isLoggedIn): ?>
+                <?php if (!empty($orderStatuses)): ?>
+                    <?php foreach ($orderStatuses as $order): ?>
+                        <div class="order-item">
+                            <h3>Order ID: <?php echo htmlspecialchars($order['order_id']); ?></h3>
+                            <p>Status: <?php echo htmlspecialchars($order['status']); ?></p>
+                            <br>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p id="nof">No orders found.</p>
+                <?php endif; ?>
             <?php else: ?>
-                <p id="nof">No orders found.</p>
+                <p id="lg">Please <a href="login.php">Login here</a> to view your orders.</p>
             <?php endif; ?>
-        <?php else: ?>
-            <p id="lg">Please <a href="login.php" >Login here</a> to view your orders.</p>
-        <?php endif; ?>
-    </section>
-    
-</div>
-<br>
-<?php include 'includes/footer.php'; ?>
+        </section>
+
+    </div>
+    <br>
+    <?php include 'includes/footer.php'; ?>
 </body>
+
 </html>
-
-
-

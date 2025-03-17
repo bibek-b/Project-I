@@ -1,13 +1,9 @@
-<?php 
-// header('Content-Type: application/json');
+<?php
 session_start();
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 
 $isLoggedIn = isset($_SESSION['User']); // Checks if the user is logged in
-$user_id = $isLoggedIn ?$_SESSION['User']['user_id'] : null;
+$user_id = $isLoggedIn ? $_SESSION['User']['user_id'] : null;
 
 $connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
@@ -16,7 +12,8 @@ if (!$connection) {
 }
 
 // Function to get user details
-function getUserDetails($connection, $user_id) {
+function getUserDetails($connection, $user_id)
+{
     $query = 'SELECT * FROM users WHERE user_id = ?';
     $stmt = mysqli_prepare($connection, $query);
     mysqli_stmt_bind_param($stmt, 'i', $user_id);
@@ -54,7 +51,7 @@ if (isset($_POST['place_order'])) {
                 $colorSel = $order['colorSel'];
                 $total_sqr_ft = $order['total_sqr_ft'];
                 $total_price = $order['total_price'];
-                $status='pending';
+                $status = 'pending';
 
                 // Prepare and execute the SQL insert query
                 $query = 'INSERT INTO orders (user_id, username, address, phone, email, length, breadth,total_sqr_ft,total_price,unit,thickness,color,status) 
@@ -69,7 +66,7 @@ if (isset($_POST['place_order'])) {
                     $userDetails['phone'],
                     $userDetails['email'],
                     $length,
-                    $breadth,   
+                    $breadth,
                     $total_sqr_ft,
                     $total_price,
                     $unitSel,
@@ -88,13 +85,13 @@ if (isset($_POST['place_order'])) {
             if ($allOrdersInserted) {
 
                 $query = 'select order_id,status from orders where user_id = ? order by order_id desc';
-                $stmt = mysqli_prepare($connection,$query);
-                mysqli_stmt_bind_param($stmt, 'i',$user_id);
+                $stmt = mysqli_prepare($connection, $query);
+                mysqli_stmt_bind_param($stmt, 'i', $user_id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
-                
+
                 $orderStatuses = [];
-                while($row = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $orderStatuses[] = [
                         'order_id' => $row['order_id'],
                         'status' => ucfirst($row['status'])
@@ -112,10 +109,10 @@ if (isset($_POST['place_order'])) {
                     'message' => 'Failed to place the order. Please try again.' // Failure message
                 ]);
             }
-        } 
+        }
     } else {
         echo json_encode([
-            'success' => false, 
+            'success' => false,
             'alert' => 'You need to sign up or log in to place an order.',
             'statusMessage' => ''
         ]);
@@ -133,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $order_id = intval($input['order_id']);
         $status = in_array($input['status'], ['accepted', 'declined']) ? $input['status'] : 'pending';
 
-        $query = 'UPDATE orders SET status = ? WHERE order_id = ?'; 
+        $query = 'UPDATE orders SET status = ? WHERE order_id = ?';
         $stmt = mysqli_prepare($connection, $query);
         mysqli_stmt_bind_param($stmt, 'si', $status, $order_id);
 
@@ -156,53 +153,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="assets/css/pages.css"> -->
     <title>Price Calculator</title>
     <style>
         body {
-            /* font-family: Arial, sans-serif; */
             padding: 0;
             margin: 0;
-            width:100%
+            width: 100%
         }
 
         /* Container for overall layout */
-        #calc-container{
+        #calc-container {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            /* text-align: center; */
-            justify-content:space-between;
+            justify-content: space-between;
             position: relative;
         }
 
 
         .content-container {
-            max-width: 1200px; /* Limit width on large screens */
+            max-width: 1200px;
+            /* Limit width on large screens */
             min-width: 325px;
-            margin: 0 auto; /* Center the content */
+            margin: 0 auto;
+            /* Center the content */
             padding: 30px 10px 30px 30px;
             border-radius: 0.3em;
         }
-        #section-container{
+
+        #section-container {
             background-color: red;
             margin-bottom: 20px
         }
-        /* .unit-selector, .thickness-selector, .color-selector,{
+
+        #remove-btn {
             margin-bottom: 5px;
             margin-top: 20px;
             padding: 5px;
-            font-size: 16px;
-        } */
-        #remove-btn{
-            margin-bottom: 5px;
-            margin-top: 20px;
-            padding: 5px;
-            font-weight:bold;
+            font-weight: bold;
             cursor: pointer;
             color: red;
             background: none;
@@ -212,7 +205,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-right: 20px;
         }
 
-        .unit-selector, .thickness-selector, .color-selector {
+        .unit-selector,
+        .thickness-selector,
+        .color-selector {
             padding: 5px;
             font-size: 16px;
         }
@@ -225,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-bottom: 0px;
         }
 
-        .input-group input  {
+        .input-group input {
             padding: 8px;
             min-width: 0;
             width: 100%;
@@ -248,7 +243,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .result-display {
             font-weight: bold;
             color: #333;
-            white-space: nowrap; /* Prevent the text from wrapping */
+            white-space: nowrap;
+            /* Prevent the text from wrapping */
         }
 
         .total-result {
@@ -257,7 +253,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .add-box-btn {
-            background-color: #4CAF50; /* Green color for the add button */
+            background-color: #4CAF50;
+            /* Green color for the add button */
             border-radius: 0.3em;
             width: 40px;
             color: white;
@@ -269,62 +266,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .add-box-btn:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #45a049;
+            /* Darker green on hover */
 
         }
 
-        #calculate-total-btn, #new-section-btn {
+        #calculate-total-btn,
+        #new-section-btn {
             margin-left: 10px;
-            margin-top:10px;
+            margin-top: 10px;
             padding: 10px;
             cursor: pointer;
             /* border-radius: 0.3em; */
             font-size: 16px;
         }
-       
+
         .remove-btn {
             margin-left: 10px;
             cursor: pointer;
             color: red;
             font-weight: bold;
         }
+
         .result-display {
             margin-top: 0px;
-            
+
         }
-        #result{
+
+        #result {
             margin-top: 10px;
-            
+
         }
-        #order-status{
+
+        #order-status {
             position: absolute;
             right: 150px;
             top: 150px;
             border: 1px solid black;
             padding: 20px;
-            border-radius:7px;
+            border-radius: 7px;
             /* width: 200px; */
         }
-        #order-status p{
+
+        #order-status p {
             margin-top: 7px;
         }
-        #order-status h4{
+
+        #order-status h4 {
             border-bottom: 1px solid black;
         }
-        
+
 
         /* Responsive Design for Mobile */
         @media only screen and (max-width: 600px) {
-        .input-group {
-            grid-template-columns: 1fr 1fr auto; /* Still maintain 2 columns for inputs and 1 auto-sized for button */
+            .input-group {
+                grid-template-columns: 1fr 1fr auto;
+                /* Still maintain 2 columns for inputs and 1 auto-sized for button */
             }
+
             .result-display {
-                grid-column: span 3; /* Result will take up the full width on small screens */
+                grid-column: span 3;
+                /* Result will take up the full width on small screens */
             }
-         }
-         
+        }
     </style>
 </head>
+
 <body>
     <div id="calc-container" data-loggged-in="<?php echo $isLoggedIn ? 'true' : 'false'; ?>">
         <?php include 'includes/navbar.php'; ?>
@@ -332,14 +339,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="content-container">
             <h1>Price Calculator</h1>
             <div id="sections-container"></div>
-            <button id="new-section-btn" >New Section</button>
-            <button id="calculate-total-btn" >Calculate Total</button>&nbsp;&nbsp;
+            <button id="new-section-btn">New Section</button>
+            <button id="calculate-total-btn">Calculate Total</button>&nbsp;&nbsp;
             <button id="place-order-btn" name="place_order" style="display: none;">Place Order</button>
             <div id="result"></div>
 
             <div id="statusMessage" style="font-size:1.2rem; margin-top: 1rem;"></div>
         </div>
-      
+
 
         <?php include 'includes/footer.php'; ?>
     </div>
@@ -348,5 +355,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="assets/js/calculate.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
-</html>
 
+</html>

@@ -1,18 +1,19 @@
 <?php include 'includes/navbar.php'; ?>
 <?php
 
-$conn = mysqli_connect('localhost','root','','GlassGuruDB');
+$conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
-if(!$conn){
-    die('Database connection failed: ' .mysqli_connect_error());
+if (!$conn) {
+    die('Database connection failed: ' . mysqli_connect_error());
 }
 
 $sql = 'select * from products';
-$result = mysqli_query($conn,$sql);
+$result = mysqli_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,17 +21,18 @@ $result = mysqli_query($conn,$sql);
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/pages.css">
 </head>
+
 <body>
     <div class="wrapper">
 
 
         <div class="products-container">
             <section class="products-list">
-                <?php 
-                    if($result && mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            $product_id = $row['product_id'];
-                            echo "
+                <?php
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $product_id = $row['product_id'];
+                        echo "
                             <div class='product-card' onclick= 'window.location.href=\"product.php?product_id={$product_id}\"'>
                     <img src='../admin/uploads/{$row['image']}' alt='{$row['title']}' class='product-image' style='width: 100%; height: 150px;'>
                     <h3>{$row['title']}</h3>
@@ -38,12 +40,12 @@ $result = mysqli_query($conn,$sql);
                     
                  </div> 
                 ";
-                        }
-                    } else {
-                        echo "<p>No products available.</p>";
                     }
+                } else {
+                    echo "<p>No products available.</p>";
+                }
                 ?>
-              
+
             </section>
         </div>
     </div>
@@ -52,5 +54,5 @@ $result = mysqli_query($conn,$sql);
 
     <script src="assets/js/script.js"></script>
 </body>
-</html>
 
+</html>

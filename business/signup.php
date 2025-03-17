@@ -14,18 +14,16 @@
         <?php include 'includes/navbar.php'; ?>
 
         <?php
-        //signup
         //connection
         $connection = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
         if (!$connection) {
             die('connection failed' . mysqli_connect_error());
-        
         }
         $signupSucess = false;
         $email_error_msg = '';
 
-        //checks is form is submitted 
+        //checks if form is submitted 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             //get form data
@@ -38,27 +36,26 @@
 
             //check if email is already exists
             $stmt = $connection->prepare('SELECT email from users where email = ?');
-            $stmt-> bind_param('s', $email);
-            $stmt-> execute();
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
             $stmt->store_result();
 
-            if($stmt->num_rows > 0) {
+            if ($stmt->num_rows > 0) {
                 //Email already exists
                 $email_error_msg = 'This email is already registered. please use a different email.';
-                
             } else {
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 //insert new user if email doesn't exist
                 $stmt->close();
                 $stmt = $connection->prepare('insert into users(userName,email,password,phone,address)
                     values(?,?,?,?,?)');
-                $stmt->bind_param('sssss', $userName, $email, $hashedPassword,$phone,$address);
+                $stmt->bind_param('sssss', $userName, $email, $hashedPassword, $phone, $address);
                 $stmt->execute();
                 $signupSucess = true;
             }
-                $stmt->close();
-            }
-             
+            $stmt->close();
+        }
+
         //close the db connection
         $connection->close();
         ?>
@@ -70,12 +67,12 @@
                     Now you can <a href="login.php"> Login here.</a> <br>To access your dashboard and start exploring our products.</p>
             <?php else: ?>
                 <h2>Sign Up</h2>
-                <?php if(!empty($email_error_msg)) :?>
-                    
+                <?php if (!empty($email_error_msg)) : ?>
+
                     <p style="color: red;"><?php
-                        $signupSucess = false;
-                         echo $email_error_msg; ?></p>
-                    <?php endif; ?>
+                                            $signupSucess = false;
+                                            echo $email_error_msg; ?></p>
+                <?php endif; ?>
                 <form action="" method="post" onsubmit="validateSignup(event)">
                     <div class="form-group">
                         <label for="userName">Username:</label>
@@ -114,4 +111,5 @@
     <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>

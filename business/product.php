@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-error_reporting(E_ALL);
 include 'includes/navbar.php';
 
 $conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
@@ -56,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_btn'])) {
                  alert('You have already placed an order for this product.');
             },1000)
             </script>";
-        
             } else {
                 // Calculate total price
                 $total_price = $product['price'];
@@ -109,6 +107,7 @@ echo "<script>var isLoggedIn = $is_logged_in;</script>";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,6 +115,7 @@ echo "<script>var isLoggedIn = $is_logged_in;</script>";
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/pages.css">
 </head>
+
 <body>
     <div class="wrapper">
 
@@ -128,19 +128,19 @@ echo "<script>var isLoggedIn = $is_logged_in;</script>";
                 <p style='color: orangered;'><strong>Price:</strong> Rs. <?php echo $product['price']; ?></p>
                 <p><?php echo $product['description']; ?></p>
                 <div class="btns">
-                    <form action="" method="post"  onsubmit="return disableButtonOnSubmit(this);">
-                    <button class="btn order-btn" name="order_btn">Order Now</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <form action="" method="post" onsubmit="return disableButtonOnSubmit(this);">
+                        <button class="btn order-btn" name="order_btn">Order Now</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     </form>
-               
-                <form method="post" action="cart_details.php">
-                <input type="hidden" name="product_id" value='<?php echo $product_id?>'>
-                <input type="hidden" name="user_id" value='<?php echo $user_id ?>'>
-                <button type="submit" class="btn add-to-cart-btn">Add to cart</button>
-                </form>
+
+                    <form method="post" action="cart_details.php">
+                        <input type="hidden" name="product_id" value='<?php echo $product_id ?>'>
+                        <input type="hidden" name="user_id" value='<?php echo $user_id ?>'>
+                        <button type="submit" class="btn add-to-cart-btn">Add to cart</button>
+                    </form>
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 
@@ -148,4 +148,5 @@ echo "<script>var isLoggedIn = $is_logged_in;</script>";
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

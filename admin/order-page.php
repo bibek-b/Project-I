@@ -82,11 +82,10 @@ if ($detailsResult) {
         .detail-row {
             margin-bottom: 15px;
         }
-        
-        .show-details{
+
+        .show-details {
             background-color: rgba(0, 0, 0, 0.3);
         }
-
     </style>
 </head>
 
@@ -111,17 +110,17 @@ if ($detailsResult) {
                     </tr>
                 </thead>
                 <tbody id="order-summary">
-    <?php if (empty($orders)): ?>
-        <tr>
-            <td colspan="7" style="text-align: center; font-size: 1.5rem; padding: 20px;">No orders found</td>
-        </tr>
-    <?php else: ?>
-        <?php
-        $sn = 1;
-        foreach ($orders as $order) {
-            $totalSquareFootage = $order['length'] * $order['breadth'] / 144; // in inches
-            $status = ucfirst($order['status']);
-            echo "<tr>
+                    <?php if (empty($orders)): ?>
+                        <tr>
+                            <td colspan="7" style="text-align: center; font-size: 1.5rem; padding: 20px;">No orders found</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php
+                        $sn = 1;
+                        foreach ($orders as $order) {
+                            $totalSquareFootage = $order['length'] * $order['breadth'] / 144; // in inches
+                            $status = ucfirst($order['status']);
+                            echo "<tr>
                 <td>{$sn}</td>
                 <td>{$order['username']}</td>
                 <td>{$order['address']}</td>
@@ -130,21 +129,21 @@ if ($detailsResult) {
                 <td>" . number_format($totalSquareFootage, 2) . " sq. ft.</td>
                 <td class='order-actions'>";
 
-            if ($status === 'Pending') {
-                echo "<button class='btn btn-accept' onclick='updateOrderStatus({$order['order_id']}, \"accepted\")'>Accept</button>
+                            if ($status === 'Pending') {
+                                echo "<button class='btn btn-accept' onclick='updateOrderStatus({$order['order_id']}, \"accepted\")'>Accept</button>
                       <button class='btn btn-decline' onclick='updateOrderStatus({$order['order_id']}, \"declined\")'>Decline</button>
                       <button class='btn show-details' onclick='showDetails({$order['order_id']})'>Details</button>";
-            } else {
-                echo "<span>{$status}</span>
+                            } else {
+                                echo "<span>{$status}</span>
                       <button class='btn show-details' onclick='showDetails({$order['order_id']})'>Details</button>";
-            }
+                            }
 
-            echo "</td></tr>";
-            $sn++;
-        }
-        ?>
-    <?php endif; ?>
-</tbody>
+                            echo "</td></tr>";
+                            $sn++;
+                        }
+                        ?>
+                    <?php endif; ?>
+                </tbody>
 
             </table>
         </div>
@@ -210,11 +209,11 @@ if ($detailsResult) {
                     const row = document.createElement("div");
                     row.className = "detail-row";
 
-                    if(item.breadth === null){
+                    if (item.breadth === null) {
                         row.innerHTML = '<p>This order has came from the Product page.<br> So it does not have any details!</p>';
                     } else {
 
-                    row.innerHTML = `
+                        row.innerHTML = `
                         <p><strong>Item ${index + 1}:</strong></p>
                         <br>
                         <p>Thickness: ${item.thickness}</p>

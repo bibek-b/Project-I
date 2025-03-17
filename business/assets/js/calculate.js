@@ -157,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    //////////////////////////New///////////////////////////////
     //shows the 'Place Order' btn only if valid input exist
 
     if (hasValidValues) {
@@ -176,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   //checks if user is logged in and handle 'place order'
   placeOrderBtn.addEventListener("click", function () {
-    // const orderStatusDiv = document.getElementById('order-status');
     const sections = document.querySelectorAll(".section");
     const orders = [];
     let totalPrice = 0;
@@ -243,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.alert) {
             alert(data.alert);
           }
-        
+
           statusMessageDiv.innerText = data.statusMessage; // "Your order is pending."
           statusMessageDiv.style.color = "green";
         } else {
@@ -258,23 +256,15 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         console.error("Error:", error);
-        document.getElementById("statusMessage").style.color = 'red';
+        document.getElementById("statusMessage").style.color = "red";
         document.getElementById("statusMessage").innerHTML =
-        "<p style ='color: red' >Something went wrong. Please try again.</p>";
-          
+          "<p style ='color: red' >Something went wrong. Please try again.</p>";
       });
   });
 
-
-
-
-
-
   // Add new section
   window.addNewSection = function () {
-  
     createSection();
-    
   };
 
   // Initialize the first section

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_result($user_id, $username, $hashedPassword, $role);
         $stmt->fetch();
 
-        
+
         if (password_verify($password, $hashedPassword)) {
             // Set session variables based on role
             if ($role === 'Admin') {
@@ -57,12 +57,14 @@ $connection->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Login</title>
 </head>
+
 <body>
     <div id="container">
         <?php include 'includes/navbar.php'; ?>
@@ -70,7 +72,7 @@ $connection->close();
             <h2>Login</h2>
             <form action="login.php" method="post">
                 <div class="form-group">
-                    <?php if(!empty($error_msg)): ?>
+                    <?php if (!empty($error_msg)): ?>
                         <p style="color: red;"><?php echo htmlspecialchars($error_msg); ?></p>
                     <?php endif; ?>
                     <label for="email">Email:</label>
@@ -88,4 +90,5 @@ $connection->close();
     </div>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

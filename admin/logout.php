@@ -14,4 +14,3 @@ session_destroy();
 // Redirect to the login page
 header('Location: ../business/login.php');
 exit();
-?>

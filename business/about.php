@@ -1,6 +1,7 @@
 <!-- about.php -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/pages.css">
     <title>About Us</title>
 </head>
+
 <body>
     <div id="container">
         <?php include 'includes/navbar.php'; ?>
@@ -23,17 +25,17 @@
 
             <h2>What We Offer</h2>
             <p>Wide Range of Products: From clear glass and mirrors to decorative and laminated options, we offer a variety of glass types tailored to your requirements.
-            Custom Solutions: We specialize in cutting, shaping, and designing glass to fit your unique preferences.
-            Expert Services: Professional installation, repair, and maintenance services, ensuring a hassle-free experience for our customers.</p><br>
+                Custom Solutions: We specialize in cutting, shaping, and designing glass to fit your unique preferences.
+                Expert Services: Professional installation, repair, and maintenance services, ensuring a hassle-free experience for our customers.</p><br>
 
             <h2>Our Unique Feature</h2>
             <p>We proudly introduce Nepal’s first-ever Price Estimator Tool for glass products. This innovative tool empowers customers to calculate costs and customize orders with ease, minimizing losses and offering transparency in pricing.</p><br>
 
             <h2>Why Choose Us?</h2>
             <p>Quality Assurance: We prioritize quality and durability in every product and service.
-            Customer-Centric Approach: Your satisfaction is at the heart of everything we do.
-            Affordable Pricing: Fair and transparent pricing to suit every budget.
-            Local Expertise: As a Nepal-based business, we understand and cater to the unique needs of our community.</p><br>
+                Customer-Centric Approach: Your satisfaction is at the heart of everything we do.
+                Affordable Pricing: Fair and transparent pricing to suit every budget.
+                Local Expertise: As a Nepal-based business, we understand and cater to the unique needs of our community.</p><br>
 
             <h2>Our Vision</h2>
             <p>To be the leading glass solutions provider in Nepal, delivering innovative products and exceptional customer service while contributing to the growth of the local industry.</p><br>
@@ -46,4 +48,5 @@
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
 $conn = mysqli_connect('localhost', 'root', '', 'GlassGuruDB');
 
@@ -139,11 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order_btn'])) {
                 );
 
                 if ($stmt->execute()) {
-                        // Optionally clear the cart after placing the order
-                        $clear_cart_query = "DELETE FROM cart WHERE cart_id = ?";
-                        $stmt = $conn->prepare($clear_cart_query);
-                        $stmt->bind_param('i', $cart_id);
-                        $stmt->execute();
+                    // Optionally clear the cart after placing the order
+                    $clear_cart_query = "DELETE FROM cart WHERE cart_id = ?";
+                    $stmt = $conn->prepare($clear_cart_query);
+                    $stmt->bind_param('i', $cart_id);
+                    $stmt->execute();
                 } else {
                     echo "Failed to place order: " . $stmt->error;
                 }
@@ -254,41 +252,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_all_order_btn']
     <div class="wrapper">
         <h1>Your Cart Details</h1>
         <div class="cart-container">
-    <?php if ($cart_result && mysqli_num_rows($cart_result) > 0): ?>
-        <?php while ($row = mysqli_fetch_assoc($cart_result)):
-            $subtotal = $row['price'] * $row['quantity'];
-            $total_price += $subtotal;
-        ?>
-            <div class="cart-details">
-                <img src="../admin/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>" class="cart-image">
-                <div class="cart-info">
-                    <h2>Product Details</h2>
-                    <p>TITLE: <?php echo $row['title']; ?><br></p>
-                    <p>PRICE: Rs. <?php echo number_format($row['price'], 2); ?><br></p>
-                    <p>QUANTITY: <?php echo $row['quantity']; ?><br></p>
-                    <p>SUB-TOTAL: Rs. <?php echo number_format($subtotal, 2); ?></p><br>
-                    <form method="post" action="cart_details.php" onsubmit="return confirmOrder(this);">
-                        <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>"> 
-                        <button type="submit" class="remove-btn" name="remove_btn">Remove</button>&nbsp;
-                        <button type="submit" class="order-btn" name="place_order_btn">Place Order</button>
-                    </form>
-                </div>
-            </div>
-        <?php endwhile; ?>
-        <form method="post" action="cart_details.php">
-            <div class="total-details">
-                <h3>Total: Rs. <?php echo number_format($total_price, 2); ?></h3>
-                <button class="place-all-order-btn" name="place_all_order_btn">Place all Order</button>
-            </div>
-        </form>
-    <?php else: ?>
-        <?php if (isset($_SESSION['User'])): ?>
-            <p>Your cart is empty.</p>
-        <?php else: ?>
-            <p>You have to <a href="login.php">Login</a> to see cart details.</p>
-        <?php endif; ?>
-    <?php endif; ?>
-</div>
+            <?php if ($cart_result && mysqli_num_rows($cart_result) > 0): ?>
+                <?php while ($row = mysqli_fetch_assoc($cart_result)):
+                    $subtotal = $row['price'] * $row['quantity'];
+                    $total_price += $subtotal;
+                ?>
+                    <div class="cart-details">
+                        <img src="../admin/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>" class="cart-image">
+                        <div class="cart-info">
+                            <h2>Product Details</h2>
+                            <p>TITLE: <?php echo $row['title']; ?><br></p>
+                            <p>PRICE: Rs. <?php echo number_format($row['price'], 2); ?><br></p>
+                            <p>QUANTITY: <?php echo $row['quantity']; ?><br></p>
+                            <p>SUB-TOTAL: Rs. <?php echo number_format($subtotal, 2); ?></p><br>
+                            <form method="post" action="cart_details.php" onsubmit="return confirmOrder(this);">
+                                <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
+                                <button type="submit" class="remove-btn" name="remove_btn">Remove</button>&nbsp;
+                                <button type="submit" class="order-btn" name="place_order_btn">Place Order</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+                <form method="post" action="cart_details.php">
+                    <div class="total-details">
+                        <h3>Total: Rs. <?php echo number_format($total_price, 2); ?></h3>
+                        <button class="place-all-order-btn" name="place_all_order_btn">Place all Order</button>
+                    </div>
+                </form>
+            <?php else: ?>
+                <?php if (isset($_SESSION['User'])): ?>
+                    <p>Your cart is empty.</p>
+                <?php else: ?>
+                    <p>You have to <a href="login.php">Login</a> to see cart details.</p>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
 
 
     </div>
@@ -300,16 +298,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_all_order_btn']
 <script src="./assets/js/script.js"></script>
 
 <script>
-function confirmOrder(form) {
-    const userChoice = confirm("Are you sure you want to place the order?");
-    if (userChoice) {
-        alert("Order placed successfully!");
-        return true; // Submit the form
-    } else {
-        // Do not submit the form and refresh the page
-        return false;
+    function confirmOrder(form) {
+        const userChoice = confirm("Are you sure you want to place the order?");
+        if (userChoice) {
+            alert("Order placed successfully!");
+            return true; // Submit the form
+        } else {
+            // Do not submit the form and refresh the page
+            return false;
+        }
     }
-}
 </script>
 
 <?php

@@ -13,7 +13,7 @@ if (isset($_SESSION['Admin'])) {
     $adminId = $_SESSION['Admin']['user_id'];
     $result = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$adminId'");
     if ($result && mysqli_num_rows($result) > 0) {
-        $adminData = mysqli_fetch_assoc($result); 
+        $adminData = mysqli_fetch_assoc($result);
     }
 }
 // Get the current page name to determine the active link
@@ -89,7 +89,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     }
 
     .nav-links li a.active {
-        background-color: #22D3EE; /* Highlight color for active link */
+        background-color: #22D3EE;
+        /* Highlight color for active link */
         color: white;
         font-weight: bold;
     }

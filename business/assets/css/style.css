@@ -1,522 +1,497 @@
 :root {
-    --first: #003371;
-    --second: #0070AC;
-    --third: #91C1D8;
-    --fourth: #D6E2E8;
-    }
+  --first: #003371;
+  --second: #0070ac;
+  --third: #91c1d8;
+  --fourth: #d6e2e8;
+}
 
 /* Reset basic styling */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Navbar styling ******************************************************************************************************/
 .navbar {
-    background-color: var(--first);
-    padding: 10px 20px;
-    color: #fff;
+  background-color: var(--first);
+  padding: 10px 20px;
+  color: #fff;
 }
 
-#container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    text-align: center;
-    justify-content:space-between;
+#container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: space-between;
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .logo img {
-    height: 50px;
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    border-radius: 10px;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  border-radius: 10px;
 }
 
-.nav-links a, .auth-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+.nav-links a,
+.auth-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 .auth-links {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 /* Hamburger menu icon */
 .menu-icon {
-    display: none;
-    font-size: 1.5rem;
-    color: #fff;
-    cursor: pointer;
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
 }
-
 
 /* Hero section styling *****************************************************************************************************/
 .hero {
-    background: url('../images/glassimage1.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
+  background: url("../images/glassimage1.jpg") no-repeat center center/cover;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
 }
 
 .hero-content {
-    max-width: 600px;
-    padding: 20px;
-    line-height: 27px;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
-    border-radius: 8px;
+  max-width: 600px;
+  padding: 20px;
+  line-height: 27px;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+  border-radius: 8px;
 
-        /* From https://css.glass */
-    background: rgba(20, 95, 12, 0.25);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(5.7px);
-    border: 1px solid rgba(255, 255, 255, 0.40);
+  /* From https://css.glass */
+  background: rgba(20, 95, 12, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(5.7px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
 .hero button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: var(--second);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: var(--second);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .hero button:hover {
-    background-color: #004d99;
+  background-color: #004d99;
 }
-
-
-
 
 /* Services section styling *************************************************************************************************/
 .services {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #f4f4f4;
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f4f4f4;
 }
 
 .services h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .service-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .service-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .service-item:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .service-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--first);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--first);
 }
 
 .service-item p {
-    font-size: 1rem;
-    color: #666;
+  font-size: 1rem;
+  color: #666;
 }
 
 .service-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 15px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 15px;
 }
-
-
-
-
-
 
 /* Featured Product Section *************************************************************************************************/
 .featured-product {
-    padding: 50px 20px;
-    background-color: var(--fourth);
-    text-align: center;
+  padding: 50px 20px;
+  background-color: var(--fourth);
+  text-align: center;
 }
 
 .featured-product h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .product-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 10vh auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 10vh auto;
 }
 
 .product-content img {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
 }
 
 .product-details {
-    max-width: 600px;
-    text-align: left;
+  max-width: 600px;
+  text-align: left;
 }
 
 .product-details h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--first);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--first);
 }
 
 .product-details p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 .product-details button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: var(--second);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: var(--second);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .product-details button:hover {
-    background-color: #004d99;
+  background-color: #004d99;
 }
-
-
-
 
 /* About section styling ***************************************************************************************************/
 .about {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
 .about h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .about p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #666;
-    line-height: 1.6;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #666;
+  line-height: 1.6;
 }
-
 
 /* Members section styling ***************************************************************************************************/
 .members {
-    padding: 50px 20px;
-    background-color: #f4f4f4;
-    text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
 }
 
 .members h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .member-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .member-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    max-width: 300px; /* Set max width for each member item */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  max-width: 300px; /* Set max width for each member item */
 }
 
 .member-item:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .member-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%; /* Circular images */
-    margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* Circular images */
+  margin-bottom: 20px;
 }
 
 .member-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--first);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--first);
 }
 
 .member-item p {
-    font-size: 1rem;
-    color: #666;
+  font-size: 1rem;
+  color: #666;
 }
-
-
-
 
 /* Footer styling ***********************************************************************************************************/
 footer {
-    position: relative;
-    bottom: 0;
-    background-color: var(--fourth);
-    color: bnlack;
-    padding: 20px 0;
-    text-align: center;
+  position: relative;
+  bottom: 0;
+  background-color: var(--fourth);
+  color: bnlack;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .footer-logo {
-    width: 100px; /* Adjust based on your logo size */
-    height: auto;
-    margin-bottom: 10px;
+  width: 100px; /* Adjust based on your logo size */
+  height: auto;
+  margin-bottom: 10px;
 }
 
 footer p {
-    margin: 0;
-    font-size: 0.9rem;
+  margin: 0;
+  font-size: 0.9rem;
 }
-
-
 
 /* login / signup ************************************************************************************************************/
 
 .login-section {
-    padding: 50px 20px;
-    min-width: 350px;
-    margin: 0 auto;
-    text-align: center;
-    align-content: center;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 50px 20px;
+  min-width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  align-content: center;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .login-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+  padding: 10px 15px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #005bb5;
+  background-color: #005bb5;
 }
 
 p {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 p a {
-    color: #0066cc;
-    text-decoration: none;
+  color: #0066cc;
+  text-decoration: none;
 }
 
 p a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
-
 
 /* Signup Section styling ***************************************************************************************************/
 
-
 .signup-section {
-    padding: 50px 20px;
-    min-width: 350px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 50px 20px;
+  min-width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .signup-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+  padding: 10px 15px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #005bb5;
+  background-color: #005bb5;
 }
 
 p {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 p a {
-    color: #0066cc;
-    text-decoration: none;
+  color: #0066cc;
+  text-decoration: none;
 }
 
 p a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-#error-msg{
-    padding-bottom: 20px;
-    color: red;
-    display: none;
+#error-msg {
+  padding-bottom: 20px;
+  color: red;
+  display: none;
 }
-
-
-
-
 
 /* Responsive design for small screens *************************************************************************************/
 @media (max-width: 778px) {
-    /* Hide the default nav-links on smaller screens */
-    .nav-links {
-        z-index: 1000;
-        padding: 30px 0;
-        display: none;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        background-color: var(--second);
-        width: 100%;
-        text-align: center;
-        flex-direction: column;
-        color: white;
-    }
+  /* Hide the default nav-links on smaller screens */
+  .nav-links {
+    z-index: 1000;
+    padding: 30px 0;
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: var(--second);
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    color: white;
+  }
 
-    /* Display the hamburger icon */
-    .menu-icon {
-        display: block;
-    }
+  /* Display the hamburger icon */
+  .menu-icon {
+    display: block;
+  }
 
-    /* Show the nav-links when active */
-    .nav-links.show {
-        display: flex;
+  /* Show the nav-links when active */
+  .nav-links.show {
+    display: flex;
+  }
 
-    }
-
-    .auth-links {
-        display: none; /* Hide login and signup links on smaller screens */
-    }
+  .auth-links {
+    display: none; /* Hide login and signup links on smaller screens */
+  }
 }

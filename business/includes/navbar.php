@@ -9,6 +9,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
 <style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
     .user-info {
         display: flex;
         flex-direction: column;
@@ -79,7 +83,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     }
 
     .nav-links li a.active {
-        background-color: #22D3EE; /* Highlight color for active link */
+        background-color: #22D3EE;
+        /* Highlight color for active link */
         color: white;
         font-weight: bold;
     }
@@ -124,7 +129,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <button type="submit" class="logout-btn">Logout</button>
                     </form>
                 </div>
-                <span class="username"><?php echo htmlspecialchars($_SESSION['User']['username']); ?></span>    
+                <span class="username"><?php echo htmlspecialchars($_SESSION['User']['username']); ?></span>
             </div>
         <?php else: ?>
             <div class="auth-links">
